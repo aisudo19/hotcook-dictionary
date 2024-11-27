@@ -1,0 +1,2084 @@
+{
+  "recipes": [
+    {
+        "title": "[1人分]きんぴら(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000036"
+    },
+    {
+        "title": "[1人分]ひじきの煮物(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000035"
+    },
+    {
+        "title": "[1人分]ピーマンのじゃこあえ(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000037"
+    },
+    {
+        "title": "アクアパッツァ",
+        "supported_devices": "ホットクック",
+        "id": "R4019"
+    },
+    {
+        "title": "「味ぽん」魯肉飯",
+        "supported_devices": "ホットクック",
+        "id": "R4352"
+    },
+    {
+        "title": "あずきの甘酒",
+        "supported_devices": "ホットクック",
+        "id": "R4106"
+    },
+    {
+        "title": "厚揚げの肉みそあえ",
+        "supported_devices": "ホットクック",
+        "id": "R4533"
+    },
+    {
+        "title": "厚切り大根と鶏手羽元のさっぱり煮",
+        "supported_devices": "ホットクック",
+        "id": "R4355"
+    },
+    {
+        "title": "甘酒",
+        "supported_devices": "ホットクック",
+        "id": "R4107"
+    },
+    {
+        "title": "甘酒チーズダッカルビ鍋",
+        "supported_devices": "ホットクック",
+        "id": "R4450"
+    },
+    {
+        "title": "甘酒豚角煮肉じゃが",
+        "supported_devices": "ホットクック",
+        "id": "R4354"
+    },
+    {
+        "title": "あめ色玉ねぎのステーキソース(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000020"
+    },
+    {
+        "title": "アルゴビマサラ(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000040"
+    },
+    {
+        "title": "いかと青菜の四川風",
+        "supported_devices": "ホットクック",
+        "id": "R4210"
+    },
+    {
+        "title": "いかとトマトのイタリアンサラダ",
+        "supported_devices": "ホットクック",
+        "id": "R4363"
+    },
+    {
+        "title": "いかのトマト煮",
+        "supported_devices": "ホットクック",
+        "id": "R4537"
+    },
+    {
+        "title": "いかめし",
+        "supported_devices": "ホットクック",
+        "id": "R4020"
+    },
+    {
+        "title": "一尾魚の煮つけ",
+        "supported_devices": "ホットクック",
+        "id": "R4021"
+    },
+    {
+        "title": "いなり煮こみ",
+        "supported_devices": "ホットクック",
+        "id": "R4211"
+    },
+    {
+        "title": "いも煮",
+        "supported_devices": "ホットクック",
+        "id": "R4191"
+    },
+    {
+        "title": "彩り野菜と鶏肉のトマト煮",
+        "supported_devices": "ホットクック",
+        "id": "R4223"
+    },
+    {
+        "title": "いわしの梅煮",
+        "supported_devices": "ホットクック",
+        "id": "R4022"
+    },
+    {
+        "title": "いわしの缶詰を使って丼！！(ホットクック部)",
+        "supported_devices": "ホットクック",
+        "id": "R4513"
+    },
+    {
+        "title": "いわしの甘露煮",
+        "supported_devices": "ホットクック",
+        "id": "R4234"
+    },
+    {
+        "title": "いわしの骨までやわらか煮",
+        "supported_devices": "ホットクック",
+        "id": "R4023"
+    },
+    {
+        "title": "ウインナーとキャベツの炒め物",
+        "supported_devices": "ホットクック",
+        "id": "R4534"
+    },
+    {
+        "title": "ウインナーと冷凍ポテトのマスタード炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4535"
+    },
+    {
+        "title": "うすいえんどうのケークサレ",
+        "supported_devices": "ホットクック",
+        "id": "R4238"
+    },
+    {
+        "title": "卯の花",
+        "supported_devices": "ホットクック",
+        "id": "R4131"
+    },
+    {
+        "title": "海の幸のホイル蒸し",
+        "supported_devices": "ホットクック",
+        "id": "R4153"
+    },
+    {
+        "title": "えのきとほたてのスープ",
+        "supported_devices": "ホットクック",
+        "id": "R4216"
+    },
+    {
+        "title": "えびとアスパラガスのタルタルソース",
+        "supported_devices": "ホットクック",
+        "id": "R4132"
+    },
+    {
+        "title": "海老としいたけの腸活アジアン春雨蒸し",
+        "supported_devices": "ホットクック",
+        "id": "R4468"
+    },
+    {
+        "title": "えびとセロリのうま煮",
+        "supported_devices": "ホットクック",
+        "id": "R4217"
+    },
+    {
+        "title": "えびと大根のとろとろ煮",
+        "supported_devices": "ホットクック",
+        "id": "R4384"
+    },
+    {
+        "title": "えびのうま煮",
+        "supported_devices": "ホットクック",
+        "id": "R4463"
+    },
+    {
+        "title": "えびのしょうゆ炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4133"
+    },
+    {
+        "title": "えびのチリソース",
+        "supported_devices": "ホットクック",
+        "id": "R4538"
+    },
+    {
+        "title": "お家で牛丼(エバラ食品)",
+        "supported_devices": "ホットクック",
+        "id": "R4471"
+    },
+    {
+        "title": "オクラと玉ねぎのサブジ",
+        "supported_devices": "ホットクック",
+        "id": "R4439"
+    },
+    {
+        "title": "お米入りミートボール",
+        "supported_devices": "ホットクック",
+        "id": "R4332"
+    },
+    {
+        "title": "お手軽！ポークステーキ（トンテキ風）～ワインポーク使用～（1枚×4P）(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000168"
+    },
+    {
+        "title": "お手軽！やわらかチキンステーキ（150ｇ・5枚入）(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000122"
+    },
+    {
+        "title": "お手軽！さばの味噌煮(エバラ食品)",
+        "supported_devices": "ホットクック",
+        "id": "R4473"
+    },
+    {
+        "title": "おでん",
+        "supported_devices": "ホットクック",
+        "id": "R4012"
+    },
+    {
+        "title": "オニオンスープ(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000019"
+    },
+    {
+        "title": "温泉卵",
+        "supported_devices": "ホットクック",
+        "id": "R4108"
+    },
+    {
+        "title": "オープンオムレツ",
+        "supported_devices": "ホットクック",
+        "id": "R4283"
+    },
+    {
+        "title": "オープンオムレツ(材料まぜ～焼き上げ)",
+        "supported_devices": "ホットクック",
+        "id": "R4392"
+    },
+    {
+        "title": "貝柱とブロッコリーの炒め物",
+        "supported_devices": "ホットクック",
+        "id": "R4541"
+    },
+    {
+        "title": "かきたま汁",
+        "supported_devices": "ホットクック",
+        "id": "R4309"
+    },
+    {
+        "title": "かす汁",
+        "supported_devices": "ホットクック",
+        "id": "R4305"
+    },
+    {
+        "title": "勝間流具だくさんみそ汁",
+        "supported_devices": "ホットクック",
+        "id": "R4209"
+    },
+    {
+        "title": "勝間流たっぷり野菜の蒸し煮(ブレイズ)",
+        "supported_devices": "ホットクック",
+        "id": "R4208"
+    },
+    {
+        "title": "かぶと牛肉のカレー風味",
+        "supported_devices": "ホットクック",
+        "id": "R4225"
+    },
+    {
+        "title": "かぼちゃコロッケの具",
+        "supported_devices": "ホットクック",
+        "id": "R4389"
+    },
+    {
+        "title": "かぼちゃのカレーあんかけ",
+        "supported_devices": "ホットクック",
+        "id": "R4227"
+    },
+    {
+        "title": "かぼちゃのそぼろあんかけ",
+        "supported_devices": "ホットクック",
+        "id": "R4379"
+    },
+    {
+        "title": "かぼちゃのチーズフォンデュ",
+        "supported_devices": "ホットクック",
+        "id": "R4135"
+    },
+    {
+        "title": "かぼちゃの肉詰め",
+        "supported_devices": "ホットクック",
+        "id": "R4136"
+    },
+    {
+        "title": "かぼちゃの煮物",
+        "supported_devices": "ホットクック",
+        "id": "R4003"
+    },
+    {
+        "title": "かぼちゃのポタージュ",
+        "supported_devices": "ホットクック",
+        "id": "R4025"
+    },
+    {
+        "title": "かぼちゃのポテトサラダ",
+        "supported_devices": "ホットクック",
+        "id": "R4380"
+    },
+    {
+        "title": "カラフルサラダ",
+        "supported_devices": "ホットクック",
+        "id": "R4149"
+    },
+    {
+        "title": "カラフル蒸し野菜",
+        "supported_devices": "ホットクック",
+        "id": "R4430"
+    },
+    {
+        "title": "かれいの煮つけ",
+        "supported_devices": "ホットクック",
+        "id": "R4026"
+    },
+    {
+        "title": "カレイの煮つけ(エバラ食品)",
+        "supported_devices": "ホットクック",
+        "id": "R4478"
+    },
+    {
+        "title": "皮ごといちじくのコンポート",
+        "supported_devices": "ホットクック",
+        "id": "R4206"
+    },
+    {
+        "title": "干焼蝦仁(カンシャオシャーレン)(味の素)",
+        "supported_devices": "ホットクック",
+        "id": "R4548"
+    },
+    {
+        "title": "「カンタン酢」で作るトロトロ角煮",
+        "supported_devices": "ホットクック",
+        "id": "R4449"
+    },
+    {
+        "title": "かんぴょうの煮物",
+        "supported_devices": "ホットクック",
+        "id": "R4192"
+    },
+    {
+        "title": "きのこシチュー",
+        "supported_devices": "ホットクック",
+        "id": "R4313"
+    },
+    {
+        "title": "きのこじゃが",
+        "supported_devices": "ホットクック",
+        "id": "R4314"
+    },
+    {
+        "title": "きのこスープ",
+        "supported_devices": "ホットクック",
+        "id": "R4310"
+    },
+    {
+        "title": "きのこチャウダー",
+        "supported_devices": "ホットクック",
+        "id": "R4311"
+    },
+    {
+        "title": "きのこのうま味たっぷりトマトソース",
+        "supported_devices": "ホットクック",
+        "id": "R4739"
+    },
+    {
+        "title": "きのこの佃煮",
+        "supported_devices": "ホットクック",
+        "id": "R4027"
+    },
+    {
+        "title": "きのこミネストローネ",
+        "supported_devices": "ホットクック",
+        "id": "R4312"
+    },
+    {
+        "title": "キムチ豆腐",
+        "supported_devices": "ホットクック",
+        "id": "R4235"
+    },
+    {
+        "title": "キャベツカレー",
+        "supported_devices": "ホットクック",
+        "id": "R4236"
+    },
+    {
+        "title": "キャベツの丸ごとスープ煮",
+        "supported_devices": "ホットクック",
+        "id": "R4028"
+    },
+    {
+        "title": "きゅうりと豚肉の炒め物",
+        "supported_devices": "ホットクック",
+        "id": "R4243"
+    },
+    {
+        "title": "切り干し大根煮(エバラ食品)",
+        "supported_devices": "ホットクック",
+        "id": "R4475"
+    },
+    {
+        "title": "切り干し大根の煮物",
+        "supported_devices": "ホットクック",
+        "id": "R4031"
+    },
+    {
+        "title": "きんぴら",
+        "supported_devices": "ホットクック",
+        "id": "R4015"
+    },
+    {
+        "title": "金目鯛の煮つけ(エバラ食品)",
+        "supported_devices": "ホットクック",
+        "id": "R4477"
+    },
+    {
+        "title": "キーマカレー",
+        "supported_devices": "ホットクック",
+        "id": "R4008"
+    },
+    {
+        "title": "牛すじカレー",
+        "supported_devices": "ホットクック",
+        "id": "R4159"
+    },
+    {
+        "title": "牛すじの煮こみ",
+        "supported_devices": "ホットクック",
+        "id": "R4029"
+    },
+    {
+        "title": "牛すじモツ丼",
+        "supported_devices": "ホットクック",
+        "id": "R4370"
+    },
+    {
+        "title": "牛タンシチュー",
+        "supported_devices": "ホットクック",
+        "id": "R4371"
+    },
+    {
+        "title": "牛肉と糸こんにゃくの甘辛煮",
+        "supported_devices": "ホットクック",
+        "id": "R4529"
+    },
+    {
+        "title": "牛肉と大根のピリ辛炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4528"
+    },
+    {
+        "title": "牛肉トマト丼(ホットクック部)",
+        "supported_devices": "ホットクック",
+        "id": "R4503"
+    },
+    {
+        "title": "牛肉と水菜の煮物",
+        "supported_devices": "ホットクック",
+        "id": "R4530"
+    },
+    {
+        "title": "牛肉の赤ワイン煮",
+        "supported_devices": "ホットクック",
+        "id": "R4291"
+    },
+    {
+        "title": "牛肉のしぐれ煮",
+        "supported_devices": "ホットクック",
+        "id": "R4030"
+    },
+    {
+        "title": "牛肉のしょうゆ煮",
+        "supported_devices": "ホットクック",
+        "id": "R4366"
+    },
+    {
+        "title": "牛肉のトマト煮こみ",
+        "supported_devices": "ホットクック",
+        "id": "R4410"
+    },
+    {
+        "title": "クラムチャウダー",
+        "supported_devices": "ホットクック",
+        "id": "R4033"
+    },
+    {
+        "title": "クリームシチュー",
+        "supported_devices": "ホットクック",
+        "id": "R4009"
+    },
+    {
+        "title": "クリームチーズ",
+        "supported_devices": "ホットクック",
+        "id": "R4110"
+    },
+    {
+        "title": "黒豆",
+        "supported_devices": "ホットクック",
+        "id": "R4018"
+    },
+    {
+        "title": "クーブイリチー",
+        "supported_devices": "ホットクック",
+        "id": "R4398"
+    },
+    {
+        "title": "具材しゃきしゃき　チンジャオロース(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000177"
+    },
+    {
+        "title": "具だくさんみそ汁",
+        "supported_devices": "ホットクック",
+        "id": "R4032"
+    },
+    {
+        "title": "グリーンカレー",
+        "supported_devices": "ホットクック",
+        "id": "R4034"
+    },
+    {
+        "title": "鶏ちゃん焼き",
+        "supported_devices": "ホットクック",
+        "id": "R4200"
+    },
+    {
+        "title": "けんちん汁",
+        "supported_devices": "ホットクック",
+        "id": "R4035"
+    },
+    {
+        "title": "子どもも喜ぶ！洋風麻婆豆腐",
+        "supported_devices": "ホットクック",
+        "id": "R4751"
+    },
+    {
+        "title": "小松菜と桜えびのサッと煮",
+        "supported_devices": "ホットクック",
+        "id": "R4325"
+    },
+    {
+        "title": "小松菜とちりめんじゃこのあえ物",
+        "supported_devices": "ホットクック",
+        "id": "R4382"
+    },
+    {
+        "title": "小松菜とツナの煮物",
+        "supported_devices": "ホットクック",
+        "id": "R4037"
+    },
+    {
+        "title": "これうま！コクうまブイヤベース",
+        "supported_devices": "ホットクック",
+        "id": "R4321"
+    },
+    {
+        "title": "これうま！とろとろロールキャベツ",
+        "supported_devices": "ホットクック",
+        "id": "R4320"
+    },
+    {
+        "title": "これうま！ワンポットツナパスタ",
+        "supported_devices": "ホットクック",
+        "id": "R4322"
+    },
+    {
+        "title": "根菜サラダ",
+        "supported_devices": "ホットクック",
+        "id": "R4381"
+    },
+    {
+        "title": "こんにゃくの甘辛煮",
+        "supported_devices": "ホットクック",
+        "id": "R4039"
+    },
+    {
+        "title": "昆布豆",
+        "supported_devices": "ホットクック",
+        "id": "R4040"
+    },
+    {
+        "title": "コーンシチュー(離乳食)",
+        "supported_devices": "ホットクック",
+        "id": "R4455"
+    },
+    {
+        "title": "コーンスープ",
+        "supported_devices": "ホットクック",
+        "id": "R4036"
+    },
+    {
+        "title": "コーンブレッド",
+        "supported_devices": "ホットクック",
+        "id": "R4743"
+    },
+    {
+        "title": "バルサミコ酢豚～5種のカラフル野菜～(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000006"
+    },
+    {
+        "title": "ご飯に盛って1品完成！ふんわり衣のヒレカツ煮(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000021"
+    },
+    {
+        "title": "ごぼうサラダ",
+        "supported_devices": "ホットクック",
+        "id": "R4416"
+    },
+    {
+        "title": "ごま豆腐(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000025"
+    },
+    {
+        "title": "五目煮豆(エバラ食品)",
+        "supported_devices": "ホットクック",
+        "id": "R4476"
+    },
+    {
+        "title": "五目豆",
+        "supported_devices": "ホットクック",
+        "id": "R4038"
+    },
+    {
+        "title": "五目麻婆春雨",
+        "supported_devices": "ホットクック",
+        "id": "R4318"
+    },
+    {
+        "title": "ごろごろ野菜のチーズシチュー",
+        "supported_devices": "ホットクック",
+        "id": "R4350"
+    },
+    {
+        "title": "ゴーヤと豚のキムチ炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4359"
+    },
+    {
+        "title": "さけとキャベツの白ワイン蒸し",
+        "supported_devices": "ホットクック",
+        "id": "R4417"
+    },
+    {
+        "title": "さけとブロッコリーのクリーム煮(取り分け離乳食)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000006"
+    },
+    {
+        "title": "酒の肴セット",
+        "supported_devices": "ホットクック",
+        "id": "R4265"
+    },
+    {
+        "title": "さけのみそ汁",
+        "supported_devices": "ホットクック",
+        "id": "R4245"
+    },
+    {
+        "title": "さけのゆずぽん酢蒸し",
+        "supported_devices": "ホットクック",
+        "id": "R4441"
+    },
+    {
+        "title": "さっぱり鶏ももチャーシュー",
+        "supported_devices": "ホットクック",
+        "id": "R4239"
+    },
+    {
+        "title": "さつま揚げと豆苗のサッと煮",
+        "supported_devices": "ホットクック",
+        "id": "R4545"
+    },
+    {
+        "title": "さつまいもの甘酒",
+        "supported_devices": "ホットクック",
+        "id": "R4113"
+    },
+    {
+        "title": "さつまいものポタージュ",
+        "supported_devices": "ホットクック",
+        "id": "R4041"
+    },
+    {
+        "title": "里いもの煮ころがし",
+        "supported_devices": "ホットクック",
+        "id": "R4004"
+    },
+    {
+        "title": "さば缶のキムチ炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4539"
+    },
+    {
+        "title": "さば缶のみぞれ煮",
+        "supported_devices": "ホットクック",
+        "id": "R4531"
+    },
+    {
+        "title": "さばじゃが",
+        "supported_devices": "ホットクック",
+        "id": "R4732"
+    },
+    {
+        "title": "さば大根",
+        "supported_devices": "ホットクック",
+        "id": "R4731"
+    },
+    {
+        "title": "さばのみそ煮",
+        "supported_devices": "ホットクック",
+        "id": "R4042"
+    },
+    {
+        "title": "参鶏湯(サムゲタン)",
+        "supported_devices": "ホットクック",
+        "id": "R4043"
+    },
+    {
+        "title": "サラダチキン",
+        "supported_devices": "ホットクック",
+        "id": "R4280"
+    },
+    {
+        "title": "三枚肉の煮つけ",
+        "supported_devices": "ホットクック",
+        "id": "R4201"
+    },
+    {
+        "title": "さんまの骨までやわらか煮",
+        "supported_devices": "ホットクック",
+        "id": "R4016"
+    },
+    {
+        "title": "さんまの骨までやわらか煮(トマト風味)",
+        "supported_devices": "ホットクック",
+        "id": "R4044"
+    },
+    {
+        "title": "酸辣湯(サンラータン)",
+        "supported_devices": "ホットクック",
+        "id": "R4058"
+    },
+    {
+        "title": "サーモンとポテトのガーリックバター炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4481"
+    },
+    {
+        "title": "雑穀の甘酒",
+        "supported_devices": "ホットクック",
+        "id": "R4112"
+    },
+    {
+        "title": "塩麹",
+        "supported_devices": "ホットクック",
+        "id": "R4114"
+    },
+    {
+        "title": "ししとうといかのカレー炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4254"
+    },
+    {
+        "title": "猪肉のしぐれ煮",
+        "supported_devices": "ホットクック",
+        "id": "R4435"
+    },
+    {
+        "title": "しじみのみそ汁",
+        "supported_devices": "ホットクック",
+        "id": "R4308"
+    },
+    {
+        "title": "しっとりやわらか鶏ハム 2種の発酵タレ添え",
+        "supported_devices": "ホットクック",
+        "id": "R4467"
+    },
+    {
+        "title": "市販のスープあたため",
+        "supported_devices": "ホットクック",
+        "id": "R4140"
+    },
+    {
+        "title": "シュウマイ(あたため)",
+        "supported_devices": "ホットクック",
+        "id": "R4090"
+    },
+    {
+        "title": "シュウマイ(手作り)",
+        "supported_devices": "ホットクック",
+        "id": "R4287"
+    },
+    {
+        "title": "シュクメルリ(ホットクック部)",
+        "supported_devices": "ホットクック",
+        "id": "R4511"
+    },
+    {
+        "title": "しょうがのサッと煮",
+        "supported_devices": "ホットクック",
+        "id": "R4045"
+    },
+    {
+        "title": "しょうがのスープ",
+        "supported_devices": "ホットクック",
+        "id": "R4259"
+    },
+    {
+        "title": "しょうゆ枝豆",
+        "supported_devices": "ホットクック",
+        "id": "R4260"
+    },
+    {
+        "title": "しょうゆ麹",
+        "supported_devices": "ホットクック",
+        "id": "R4119"
+    },
+    {
+        "title": "白身魚としめじのサッと煮",
+        "supported_devices": "ホットクック",
+        "id": "R4344"
+    },
+    {
+        "title": "白身魚と野菜のとろみあえ(離乳食)",
+        "supported_devices": "ホットクック",
+        "id": "R4456"
+    },
+    {
+        "title": "シーチキンと玉ねぎごろっとおみそ汁",
+        "supported_devices": "ホットクック",
+        "id": "R4744"
+    },
+    {
+        "title": "治部煮",
+        "supported_devices": "ホットクック",
+        "id": "R4203"
+    },
+    {
+        "title": "じゃがいもと鶏肉のおかか煮",
+        "supported_devices": "ホットクック",
+        "id": "R4728"
+    },
+    {
+        "title": "じゃがいもとピーマンのオイスターソース炒め(ホットクック部)",
+        "supported_devices": "ホットクック",
+        "id": "R4502"
+    },
+    {
+        "title": "じゃがいもとれんこんの炒め煮",
+        "supported_devices": "ホットクック",
+        "id": "R4258"
+    },
+    {
+        "title": "じゃがいもの甘辛炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4141"
+    },
+    {
+        "title": "じゃがいものアンチョビチーズクリームソース",
+        "supported_devices": "ホットクック",
+        "id": "R4465"
+    },
+    {
+        "title": "じゃがいものガレット",
+        "supported_devices": "ホットクック",
+        "id": "R4284"
+    },
+    {
+        "title": "じゃがいものポタージュ",
+        "supported_devices": "ホットクック",
+        "id": "R4011"
+    },
+    {
+        "title": "じゃがいものみそシチュー",
+        "supported_devices": "ホットクック",
+        "id": "R4257"
+    },
+    {
+        "title": "じゃがいもの冷製スープ　ジュレのせ",
+        "supported_devices": "ホットクック",
+        "id": "R4205"
+    },
+    {
+        "title": "じゃっぱ汁",
+        "supported_devices": "ホットクック",
+        "id": "R4193"
+    },
+    {
+        "title": "ジャージャーそうめん",
+        "supported_devices": "ホットクック",
+        "id": "R4222"
+    },
+    {
+        "title": "ジンディンロウ 生シュウマイ 6個入り(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000156"
+    },
+    {
+        "title": "ジンディンロウ 本格生小籠包 12個入り(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000127"
+    },
+    {
+        "title": "砂肝のオイル煮",
+        "supported_devices": "ホットクック",
+        "id": "R4282"
+    },
+    {
+        "title": "スパイスたっぷり！本格チキンビリヤニ（2人前）(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000033"
+    },
+    {
+        "title": "スペアリブと大根のスパイシー塩角煮",
+        "supported_devices": "ホットクック",
+        "id": "R100000000043"
+    },
+    {
+        "title": "スペアリブの煮こみ",
+        "supported_devices": "ホットクック",
+        "id": "R4046"
+    },
+    {
+        "title": "せいろ蒸し",
+        "supported_devices": "ホットクック",
+        "id": "R4092"
+    },
+    {
+        "title": "ソーセージ",
+        "supported_devices": "ホットクック",
+        "id": "R4093"
+    },
+    {
+        "title": "たいのあら炊き",
+        "supported_devices": "ホットクック",
+        "id": "R4047"
+    },
+    {
+        "title": "たいのトマト蒸し",
+        "supported_devices": "ホットクック",
+        "id": "R4347"
+    },
+    {
+        "title": "たいのミネストローネ(取り分け離乳食)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000003"
+    },
+    {
+        "title": "たこと里いもの煮物",
+        "supported_devices": "ホットクック",
+        "id": "R4048"
+    },
+    {
+        "title": "たことズッキーニのバター炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4536"
+    },
+    {
+        "title": "たこのやわらか煮",
+        "supported_devices": "ホットクック",
+        "id": "R4194"
+    },
+    {
+        "title": "卵入りトマトスープ",
+        "supported_devices": "ホットクック",
+        "id": "R4143"
+    },
+    {
+        "title": "卵入りポテトサラダ",
+        "supported_devices": "ホットクック",
+        "id": "R4154"
+    },
+    {
+        "title": "卵ふんわり　ご飯にのせてうな玉丼(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000185"
+    },
+    {
+        "title": "玉ねぎと牛肉の当座煮",
+        "supported_devices": "ホットクック",
+        "id": "R4317"
+    },
+    {
+        "title": "玉ねぎのガレット",
+        "supported_devices": "ホットクック",
+        "id": "R4299"
+    },
+    {
+        "title": "玉ねぎの丸ごとスープ煮",
+        "supported_devices": "ホットクック",
+        "id": "R4049"
+    },
+    {
+        "title": "たらとじゃがいものポタージュ",
+        "supported_devices": "ホットクック",
+        "id": "R4319"
+    },
+    {
+        "title": "タンドーリチキン",
+        "supported_devices": "ホットクック",
+        "id": "R4440"
+    },
+    {
+        "title": "大根たっぷり鶏肉のオイスター煮",
+        "supported_devices": "ホットクック",
+        "id": "R4383"
+    },
+    {
+        "title": "大根とひき肉でとろ～り煮物",
+        "supported_devices": "ホットクック",
+        "id": "R4242"
+    },
+    {
+        "title": "大根のひき肉あんかけ(取り分け離乳食)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000007"
+    },
+    {
+        "title": "だし",
+        "supported_devices": "ホットクック",
+        "id": "R4121"
+    },
+    {
+        "title": "だし旨 無水 豚バラ大根",
+        "supported_devices": "ホットクック",
+        "id": "R4330"
+    },
+    {
+        "title": "チキンと冬瓜のココナッツミルク煮",
+        "supported_devices": "ホットクック",
+        "id": "R4479"
+    },
+    {
+        "title": "チキンと野菜のカレー(無水カレー)",
+        "supported_devices": "ホットクック",
+        "id": "R4007"
+    },
+    {
+        "title": "チキンハーブハム",
+        "supported_devices": "ホットクック",
+        "id": "R4230"
+    },
+    {
+        "title": "チキンポトフ(取り分け離乳食)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000001"
+    },
+    {
+        "title": "筑前煮",
+        "supported_devices": "ホットクック",
+        "id": "R4002"
+    },
+    {
+        "title": "ちくわとピーマンのおかかあえ",
+        "supported_devices": "ホットクック",
+        "id": "R4543"
+    },
+    {
+        "title": "ピリ辛スープ",
+        "supported_devices": "ホットクック",
+        "id": "R4315"
+    },
+    {
+        "title": "チャプチェ",
+        "supported_devices": "ホットクック",
+        "id": "R4546"
+    },
+    {
+        "title": "茶わん蒸し",
+        "supported_devices": "ホットクック",
+        "id": "R4096"
+    },
+    {
+        "title": "中華風ひき肉のレタス包み(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000021"
+    },
+    {
+        "title": "中華まん(あたため)",
+        "supported_devices": "ホットクック",
+        "id": "R4098"
+    },
+    {
+        "title": "チョコっと蒸しパン(ホットクック部)",
+        "supported_devices": "ホットクック",
+        "id": "R4504"
+    },
+    {
+        "title": "チリコンカン",
+        "supported_devices": "ホットクック",
+        "id": "R4050"
+    },
+    {
+        "title": "青椒肉絲(チンジャオロウスー)(味の素)",
+        "supported_devices": "ホットクック",
+        "id": "R4547"
+    },
+    {
+        "title": "チンジャオロースー",
+        "supported_devices": "ホットクック",
+        "id": "R4527"
+    },
+    {
+        "title": "チーズポテト",
+        "supported_devices": "ホットクック",
+        "id": "R4729"
+    },
+    {
+        "title": "ツナ",
+        "supported_devices": "ホットクック",
+        "id": "R4281"
+    },
+    {
+        "title": "ツナキャベツのカレーマヨ風味",
+        "supported_devices": "ホットクック",
+        "id": "R4240"
+    },
+    {
+        "title": "ツナじゃがオムレツ",
+        "supported_devices": "ホットクック",
+        "id": "R4296"
+    },
+    {
+        "title": "津和野風いも煮",
+        "supported_devices": "ホットクック",
+        "id": "R4434"
+    },
+    {
+        "title": "手作り豆腐",
+        "supported_devices": "ホットクック",
+        "id": "R4123"
+    },
+    {
+        "title": "手作りみそ",
+        "supported_devices": "ホットクック",
+        "id": "R4124"
+    },
+    {
+        "title": "手羽先のコラーゲンスープ",
+        "supported_devices": "ホットクック",
+        "id": "R4306"
+    },
+    {
+        "title": "手羽元と玉ねぎの黒酢煮",
+        "supported_devices": "ホットクック",
+        "id": "R4498"
+    },
+    {
+        "title": "手羽元と野菜のナポリタン煮",
+        "supported_devices": "ホットクック",
+        "id": "R4750"
+    },
+    {
+        "title": "手羽元のタンドリー煮",
+        "supported_devices": "ホットクック",
+        "id": "R4233"
+    },
+    {
+        "title": "デミグラス風ソース",
+        "supported_devices": "ホットクック",
+        "id": "R4051"
+    },
+    {
+        "title": "冬瓜のえびあんかけ",
+        "supported_devices": "ホットクック",
+        "id": "R4377"
+    },
+    {
+        "title": "豆腐オムレツ",
+        "supported_devices": "ホットクック",
+        "id": "R4302"
+    },
+    {
+        "title": "豆腐の中華あんかけ",
+        "supported_devices": "ホットクック",
+        "id": "R4385"
+    },
+    {
+        "title": "とうもろこしとスペアリブのスープ",
+        "supported_devices": "ホットクック",
+        "id": "R4360"
+    },
+    {
+        "title": "トマトオムレツ",
+        "supported_devices": "ホットクック",
+        "id": "R4295"
+    },
+    {
+        "title": "トマトカレー(取り分け離乳食)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000005"
+    },
+    {
+        "title": "トマトクリームシチュー(ホットクック部)",
+        "supported_devices": "ホットクック",
+        "id": "R4505"
+    },
+    {
+        "title": "トマトソース(離乳食)",
+        "supported_devices": "ホットクック",
+        "id": "R4460"
+    },
+    {
+        "title": "トマトソースハンバーグ(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000142"
+    },
+    {
+        "title": "トマトライス",
+        "supported_devices": "ホットクック",
+        "id": "R4412"
+    },
+    {
+        "title": "トムヤムクン",
+        "supported_devices": "ホットクック",
+        "id": "R4053"
+    },
+    {
+        "title": "鶏手羽と根菜の甘酒参鶏湯(サムゲタン)",
+        "supported_devices": "ホットクック",
+        "id": "R4451"
+    },
+    {
+        "title": "鶏手羽と大根の煮物(エバラ食品)",
+        "supported_devices": "ホットクック",
+        "id": "R4472"
+    },
+    {
+        "title": "鶏とカシューナッツの炒め煮",
+        "supported_devices": "ホットクック",
+        "id": "R4055"
+    },
+    {
+        "title": "鶏とさつまいもの煮物",
+        "supported_devices": "ホットクック",
+        "id": "R4419"
+    },
+    {
+        "title": "鶏としいたけのスープ",
+        "supported_devices": "ホットクック",
+        "id": "R4364"
+    },
+    {
+        "title": "鶏とじゃがいもの炒め煮",
+        "supported_devices": "ホットクック",
+        "id": "R4418"
+    },
+    {
+        "title": "鶏と大根の煮物",
+        "supported_devices": "ホットクック",
+        "id": "R4056"
+    },
+    {
+        "title": "鶏とブロッコリーのオイスター炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4057"
+    },
+    {
+        "title": "鶏とプルーンのバルサミコ煮こみ",
+        "supported_devices": "ホットクック",
+        "id": "R4327"
+    },
+    {
+        "title": "鶏肉ときくらげのとろみ煮",
+        "supported_devices": "ホットクック",
+        "id": "R4532"
+    },
+    {
+        "title": "鶏肉とキャベツの蒸し物",
+        "supported_devices": "ホットクック",
+        "id": "R4415"
+    },
+    {
+        "title": "鶏肉と野菜のあっさり煮",
+        "supported_devices": "ホットクック",
+        "id": "R4420"
+    },
+    {
+        "title": "鶏肉のレモンクリーム煮",
+        "supported_devices": "ホットクック",
+        "id": "R4333"
+    },
+    {
+        "title": "鶏の甘辛煮",
+        "supported_devices": "ホットクック",
+        "id": "R4212"
+    },
+    {
+        "title": "鶏のさっぱり煮",
+        "supported_devices": "ホットクック",
+        "id": "R4740"
+    },
+    {
+        "title": "鶏のトマトクリームチーズ煮",
+        "supported_devices": "ホットクック",
+        "id": "R4730"
+    },
+    {
+        "title": "鶏のふっくらつや煮",
+        "supported_devices": "ホットクック",
+        "id": "R4375"
+    },
+    {
+        "title": "鶏むね肉とパプリカのトマト塩麹煮",
+        "supported_devices": "ホットクック",
+        "id": "R4150"
+    },
+    {
+        "title": "鶏モツ",
+        "supported_devices": "ホットクック",
+        "id": "R4372"
+    },
+    {
+        "title": "とろうま！牛すじ大根ゆずぽん酢煮込み",
+        "supported_devices": "ホットクック",
+        "id": "R4727"
+    },
+    {
+        "title": "トロトロ食感がうれしい！麻婆なす（花山椒付き）(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000049"
+    },
+    {
+        "title": "豚汁",
+        "supported_devices": "ホットクック",
+        "id": "R4334"
+    },
+    {
+        "title": "ドライカレー",
+        "supported_devices": "ホットクック",
+        "id": "R4054"
+    },
+    {
+        "title": "なすとししとうの揚げびたし風",
+        "supported_devices": "ホットクック",
+        "id": "R4443"
+    },
+    {
+        "title": "なすの揚げ焼き",
+        "supported_devices": "ホットクック",
+        "id": "R4219"
+    },
+    {
+        "title": "夏野菜の冷製煮物",
+        "supported_devices": "ホットクック",
+        "id": "R4307"
+    },
+    {
+        "title": "煮あえっこ",
+        "supported_devices": "ホットクック",
+        "id": "R4373"
+    },
+    {
+        "title": "肉じゃが",
+        "supported_devices": "ホットクック",
+        "id": "R4001"
+    },
+    {
+        "title": "肉じゃが(エバラ食品)",
+        "supported_devices": "ホットクック",
+        "id": "R4469"
+    },
+    {
+        "title": "肉じゃが(取り分け離乳食)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000002"
+    },
+    {
+        "title": "肉じゃがコロッケの具",
+        "supported_devices": "ホットクック",
+        "id": "R4393"
+    },
+    {
+        "title": "肉豆腐",
+        "supported_devices": "ホットクック",
+        "id": "R4261"
+    },
+    {
+        "title": "肉みそ",
+        "supported_devices": "ホットクック",
+        "id": "R4017"
+    },
+    {
+        "title": "煮こみハンバーグ",
+        "supported_devices": "ホットクック",
+        "id": "R4146"
+    },
+    {
+        "title": "煮しめ",
+        "supported_devices": "ホットクック",
+        "id": "R4462"
+    },
+    {
+        "title": "ニラ入りオムレツ",
+        "supported_devices": "ホットクック",
+        "id": "R4293"
+    },
+    {
+        "title": "ニラとあさりの酒蒸し",
+        "supported_devices": "ホットクック",
+        "id": "R4286"
+    },
+    {
+        "title": "にんじんと豚肉の炒め物",
+        "supported_devices": "ホットクック",
+        "id": "R4147"
+    },
+    {
+        "title": "にんじんとりんごの甘酒",
+        "supported_devices": "ホットクック",
+        "id": "R4125"
+    },
+    {
+        "title": "にんじんのガレット",
+        "supported_devices": "ホットクック",
+        "id": "R4298"
+    },
+    {
+        "title": "にんじんのグラッセ",
+        "supported_devices": "ホットクック",
+        "id": "R4288"
+    },
+    {
+        "title": "にんじんのたらこ炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4542"
+    },
+    {
+        "title": "葱油ソース(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000014"
+    },
+    {
+        "title": "のっぺい汁",
+        "supported_devices": "ホットクック",
+        "id": "R4195"
+    },
+    {
+        "title": "のりの佃煮(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000029"
+    },
+    {
+        "title": "白菜とツナのしょうゆ煮",
+        "supported_devices": "ホットクック",
+        "id": "R4346"
+    },
+    {
+        "title": "白菜と豚バラの重ね煮",
+        "supported_devices": "ホットクック",
+        "id": "R4060"
+    },
+    {
+        "title": "白菜のクリーム煮",
+        "supported_devices": "ホットクック",
+        "id": "R4061"
+    },
+    {
+        "title": "八宝菜",
+        "supported_devices": "ホットクック",
+        "id": "R4006"
+    },
+    {
+        "title": "八宝菜(味の素)",
+        "supported_devices": "ホットクック",
+        "id": "R4549"
+    },
+    {
+        "title": "ハヤシライスソース",
+        "supported_devices": "ホットクック",
+        "id": "R4406"
+    },
+    {
+        "title": "春野菜とえびの塩麹蒸し",
+        "supported_devices": "ホットクック",
+        "id": "R4326"
+    },
+    {
+        "title": "バーニャカウダソース",
+        "supported_devices": "ホットクック",
+        "id": "R4059"
+    },
+    {
+        "title": "パスタソースでスンドゥブ",
+        "supported_devices": "ホットクック",
+        "id": "R4752"
+    },
+    {
+        "title": "パプリカとズッキーニのあえ物",
+        "supported_devices": "ホットクック",
+        "id": "R4062"
+    },
+    {
+        "title": "ひじき煮(エバラ食品)",
+        "supported_devices": "ホットクック",
+        "id": "R4474"
+    },
+    {
+        "title": "ひじきオムレツ",
+        "supported_devices": "ホットクック",
+        "id": "R4303"
+    },
+    {
+        "title": "ひじきの煮物",
+        "supported_devices": "ホットクック",
+        "id": "R4014"
+    },
+    {
+        "title": "ひよこ豆のスパイシー炒め(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000024"
+    },
+    {
+        "title": "ビーフカレー",
+        "supported_devices": "ホットクック",
+        "id": "R4063"
+    },
+    {
+        "title": "ビーフシチュー",
+        "supported_devices": "ホットクック",
+        "id": "R4010"
+    },
+    {
+        "title": "ビーフシチュー(市販ルウ使用)",
+        "supported_devices": "ホットクック",
+        "id": "R4345"
+    },
+    {
+        "title": "ビーフストロガノフ",
+        "supported_devices": "ホットクック",
+        "id": "R4064"
+    },
+    {
+        "title": "ビーフストロガノフ(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000005"
+    },
+    {
+        "title": "ピーマンのじゃこあえ",
+        "supported_devices": "ホットクック",
+        "id": "R4065"
+    },
+    {
+        "title": "ふりかけ(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000030"
+    },
+    {
+        "title": "ふろふき大根",
+        "supported_devices": "ホットクック",
+        "id": "R4072"
+    },
+    {
+        "title": "ブイヤベース",
+        "supported_devices": "ホットクック",
+        "id": "R4066"
+    },
+    {
+        "title": "豚肩ロース肉のトマト香草煮",
+        "supported_devices": "ホットクック",
+        "id": "R4604"
+    },
+    {
+        "title": "豚肩ロースの赤ワイン煮こみ(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000013"
+    },
+    {
+        "title": "豚キムチ",
+        "supported_devices": "ホットクック",
+        "id": "R4386"
+    },
+    {
+        "title": "豚肉と大根の和風カレー",
+        "supported_devices": "ホットクック",
+        "id": "R4603"
+    },
+    {
+        "title": "豚肉となすの炒め物",
+        "supported_devices": "ホットクック",
+        "id": "R4405"
+    },
+    {
+        "title": "豚肉ともやしの四川香味炒め(味の素)",
+        "supported_devices": "ホットクック",
+        "id": "R4551"
+    },
+    {
+        "title": "豚肉のトマト煮こみ",
+        "supported_devices": "ホットクック",
+        "id": "R4067"
+    },
+    {
+        "title": "豚肉のレモンクリームソテー",
+        "supported_devices": "ホットクック",
+        "id": "R4602"
+    },
+    {
+        "title": "豚の角煮",
+        "supported_devices": "ホットクック",
+        "id": "R4068"
+    },
+    {
+        "title": "豚の角煮～ゆずぽん酢仕立て～",
+        "supported_devices": "ホットクック",
+        "id": "R4442"
+    },
+    {
+        "title": "豚バラ大根",
+        "supported_devices": "ホットクック",
+        "id": "R4005"
+    },
+    {
+        "title": "豚バラと里いものみそ煮",
+        "supported_devices": "ホットクック",
+        "id": "R4432"
+    },
+    {
+        "title": "豚バラ肉と野菜の煮物",
+        "supported_devices": "ホットクック",
+        "id": "R4408"
+    },
+    {
+        "title": "豚ブロック肉のだし煮",
+        "supported_devices": "ホットクック",
+        "id": "R4218"
+    },
+    {
+        "title": "ぶり大根",
+        "supported_devices": "ホットクック",
+        "id": "R4070"
+    },
+    {
+        "title": "ぶりのおろし煮",
+        "supported_devices": "ホットクック",
+        "id": "R4294"
+    },
+    {
+        "title": "ぶりの酢煮",
+        "supported_devices": "ホットクック",
+        "id": "R4071"
+    },
+    {
+        "title": "ブロッコリーとにんじんの炒め物",
+        "supported_devices": "ホットクック",
+        "id": "R4367"
+    },
+    {
+        "title": "プチトマトのさっぱり煮",
+        "supported_devices": "ホットクック",
+        "id": "R4069"
+    },
+    {
+        "title": "プリプリ！海老蒸し餃子(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000070"
+    },
+    {
+        "title": "プロテインバー(VALX)",
+        "supported_devices": "ホットクック",
+        "id": "R4746"
+    },
+    {
+        "title": "【ヘルシオデリプレミアム】キャベツとろとろ　ロールキャベツ（コンソメ）",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000165"
+    },
+    {
+        "title": "【ヘルシオデリプレミアム】こだわり白菜の八宝菜",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000145"
+    },
+    {
+        "title": "【ヘルシオデリプレミアム】ゴロっとビーフの欧風カレー",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000141"
+    },
+    {
+        "title": "【ヘルシオデリプレミアム】ホロっとやわらか  豚の角煮",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000136"
+    },
+    {
+        "title": "【ヘルシオデリプレミアム】本格！海老のチリソース",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000146"
+    },
+    {
+        "title": "【ヘルシオデリプレミアム】ゴロっと台湾風豚の角煮（ルーロー飯）",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000125"
+    },
+    {
+        "title": "【ヘルシオデリプレミアム】デミグラスソースハンバーグ",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000107"
+    },
+    {
+        "title": "ベジスライスホイコーロー(亀田製菓)",
+        "supported_devices": "ホットクック",
+        "id": "R4396"
+    },
+    {
+        "title": "ベジフィレ肉じゃが(亀田製菓)",
+        "supported_devices": "ホットクック",
+        "id": "R4397"
+    },
+    {
+        "title": "ベジミンチミートソース(亀田製菓)",
+        "supported_devices": "ホットクック",
+        "id": "R4399"
+    },
+    {
+        "title": "べっこう煮",
+        "supported_devices": "ホットクック",
+        "id": "R4297"
+    },
+    {
+        "title": "回鍋肉(ホイコーロー)",
+        "supported_devices": "ホットクック",
+        "id": "R4073"
+    },
+    {
+        "title": "ほたて貝ともやしの蒸し物",
+        "supported_devices": "ホットクック",
+        "id": "R4300"
+    },
+    {
+        "title": "北海道産鮭のちゃんちゃん焼き(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000182"
+    },
+    {
+        "title": "北海道産ポテトと厚切りベーコンのジャーマンポテト(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000181"
+    },
+    {
+        "title": "骨付きチキンのバスク風煮込み",
+        "supported_devices": "ホットクック",
+        "id": "R4292"
+    },
+    {
+        "title": "骨付き鶏もも肉のタンドリー煮",
+        "supported_devices": "ホットクック",
+        "id": "R4075"
+    },
+    {
+        "title": "「ほぼカニ」あんかけオムレツ",
+        "supported_devices": "ホットクック",
+        "id": "R4446"
+    },
+    {
+        "title": "ほぼカニとうま染み大根のあんかけ",
+        "supported_devices": "ホットクック",
+        "id": "R4734"
+    },
+    {
+        "title": "「ほぼカニ」と「豆乳揚げだし」の和風ポトフ",
+        "supported_devices": "ホットクック",
+        "id": "R4447"
+    },
+    {
+        "title": "ほろほろチキンの甘酒カレー",
+        "supported_devices": "ホットクック",
+        "id": "R4353"
+    },
+    {
+        "title": "ホワイトソース",
+        "supported_devices": "ホットクック",
+        "id": "R4077"
+    },
+    {
+        "title": "棒だら煮",
+        "supported_devices": "ホットクック",
+        "id": "R4374"
+    },
+    {
+        "title": "ぼっかけ汁",
+        "supported_devices": "ホットクック",
+        "id": "R4196"
+    },
+    {
+        "title": "ボルシチ",
+        "supported_devices": "ホットクック",
+        "id": "R4076"
+    },
+    {
+        "title": "ポテトコロッケの具",
+        "supported_devices": "ホットクック",
+        "id": "R4388"
+    },
+    {
+        "title": "ポテトサラダ(ゆで～つぶし)",
+        "supported_devices": "ホットクック",
+        "id": "R4387"
+    },
+    {
+        "title": "ポトフ",
+        "supported_devices": "ホットクック",
+        "id": "R4013"
+    },
+    {
+        "title": "ポークカレー",
+        "supported_devices": "ホットクック",
+        "id": "R4368"
+    },
+    {
+        "title": "ポークビーンズ",
+        "supported_devices": "ホットクック",
+        "id": "R4074"
+    },
+    {
+        "title": "丸ごとキャベツのミネストローネ",
+        "supported_devices": "ホットクック",
+        "id": "R4753"
+    },
+    {
+        "title": "丸ごと新玉ねぎとベーコンのコンソメ煮(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000176"
+    },
+    {
+        "title": "丸ごとトマトの美白＆湿気排出スープ",
+        "supported_devices": "ホットクック",
+        "id": "R4482"
+    },
+    {
+        "title": "まるごとミートローフバーグ",
+        "supported_devices": "ホットクック",
+        "id": "R4601"
+    },
+    {
+        "title": "丸ごとロールレタス",
+        "supported_devices": "ホットクック",
+        "id": "R4220"
+    },
+    {
+        "title": "麻婆豆腐",
+        "supported_devices": "ホットクック",
+        "id": "R4343"
+    },
+    {
+        "title": "麻婆なす",
+        "supported_devices": "ホットクック",
+        "id": "R4078"
+    },
+    {
+        "title": "みそ煮こみおでん",
+        "supported_devices": "ホットクック",
+        "id": "R4427"
+    },
+    {
+        "title": "みぞれ汁",
+        "supported_devices": "ホットクック",
+        "id": "R4316"
+    },
+    {
+        "title": "ミネストローネ",
+        "supported_devices": "ホットクック",
+        "id": "R4301"
+    },
+    {
+        "title": "ミルク豚汁(取り分け離乳食)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000004"
+    },
+    {
+        "title": "ミートソース",
+        "supported_devices": "ホットクック",
+        "id": "R4079"
+    },
+    {
+        "title": "ミートソース(もっとクック専用)",
+        "supported_devices": "ホットクック",
+        "id": "R100000000022"
+    },
+    {
+        "title": "ミートボールのトマトシチュー(ホットクック部)",
+        "supported_devices": "ホットクック",
+        "id": "R4501"
+    },
+    {
+        "title": "蒸し鶏＆蒸し魚(離乳食)",
+        "supported_devices": "ホットクック",
+        "id": "R4461"
+    },
+    {
+        "title": "蒸し豆",
+        "supported_devices": "ホットクック",
+        "id": "R4253"
+    },
+    {
+        "title": "蒸し野菜",
+        "supported_devices": "ホットクック",
+        "id": "R4241"
+    },
+    {
+        "title": "蒸し野菜(離乳食)",
+        "supported_devices": "ホットクック",
+        "id": "R4453"
+    },
+    {
+        "title": "蒸し野菜のバーニャカウダ",
+        "supported_devices": "ホットクック",
+        "id": "R4151"
+    },
+    {
+        "title": "無水ナポリタン",
+        "supported_devices": "ホットクック",
+        "id": "R4207"
+    },
+    {
+        "title": "桃缶から作る桃チャツネ",
+        "supported_devices": "ホットクック",
+        "id": "R4438"
+    },
+    {
+        "title": "もやしとツナのポン酢炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4544"
+    },
+    {
+        "title": "もやしとニラの炒め物",
+        "supported_devices": "ホットクック",
+        "id": "R4400"
+    },
+    {
+        "title": "八尾若ごぼうの煮びたし",
+        "supported_devices": "ホットクック",
+        "id": "R4423"
+    },
+    {
+        "title": "八尾若ごぼうの葉の佃煮",
+        "supported_devices": "ホットクック",
+        "id": "R4425"
+    },
+    {
+        "title": "野菜スープ",
+        "supported_devices": "ホットクック",
+        "id": "R4080"
+    },
+    {
+        "title": "野菜たっぷりスープ春雨",
+        "supported_devices": "ホットクック",
+        "id": "R4081"
+    },
+    {
+        "title": "野菜たっぷりスープパスタ(ホットクック部)",
+        "supported_devices": "ホットクック",
+        "id": "R4509"
+    },
+    {
+        "title": "野菜だし",
+        "supported_devices": "ホットクック",
+        "id": "R4454"
+    },
+    {
+        "title": "野菜のカレー炒め",
+        "supported_devices": "ホットクック",
+        "id": "R4540"
+    },
+    {
+        "title": "飲茶セット",
+        "supported_devices": "ホットクック",
+        "id": "R4262"
+    },
+    {
+        "title": "やわらか煮豚(エバラ食品)",
+        "supported_devices": "ホットクック",
+        "id": "R4470"
+    },
+    {
+        "title": "やわらかチャーシュー",
+        "supported_devices": "ホットクック",
+        "id": "R4331"
+    },
+    {
+        "title": "ゆず香る鶏手羽のぽん酢煮",
+        "supported_devices": "ホットクック",
+        "id": "R4351"
+    },
+    {
+        "title": "ゆずみそ",
+        "supported_devices": "ホットクック",
+        "id": "R4431"
+    },
+    {
+        "title": "ヨーグルト",
+        "supported_devices": "ホットクック",
+        "id": "R4129"
+    },
+    {
+        "title": "ラタトゥイユ",
+        "supported_devices": "ホットクック",
+        "id": "R4082"
+    },
+    {
+        "title": "りんごの豚肉巻き(ホットクック部)",
+        "supported_devices": "ホットクック",
+        "id": "R4512"
+    },
+    {
+        "title": "ルーローハン(エバラ食品)",
+        "supported_devices": "ホットクック",
+        "id": "R4483"
+    },
+    {
+        "title": "ルーを使わないチキンカレー",
+        "supported_devices": "ホットクック",
+        "id": "R4221"
+    },
+    {
+        "title": "レモンのさっぱり鶏手羽煮込み",
+        "supported_devices": "ホットクック",
+        "id": "R4736"
+    },
+    {
+        "title": "れんこんきんぴら",
+        "supported_devices": "ホットクック",
+        "id": "R4199"
+    },
+    {
+        "title": "れんこんのすりながし汁",
+        "supported_devices": "ホットクック",
+        "id": "R4411"
+    },
+    {
+        "title": "ローストビーフ",
+        "supported_devices": "ホットクック",
+        "id": "R4278"
+    },
+    {
+        "title": "ローストポーク",
+        "supported_devices": "ホットクック",
+        "id": "R4279"
+    },
+    {
+        "title": "ロールキャベツ",
+        "supported_devices": "ホットクック",
+        "id": "R4083"
+    },
+    {
+        "title": "若竹煮",
+        "supported_devices": "ホットクック",
+        "id": "R4357"
+    },
+    {
+        "title": "わかめスープ",
+        "supported_devices": "ホットクック",
+        "id": "R4304"
+    },
+    {
+        "title": "和風あん",
+        "supported_devices": "ホットクック",
+        "id": "R4378"
+    },
+    {
+        "title": "ワンタン入り！玄米黒酢の具だくさんサンラータンスープ(ヘルシオデリ)",
+        "supported_devices": "ヘルシオデリ,ホットクック",
+        "id": "R101000000034"
+    }
+  ]
+}
