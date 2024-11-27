@@ -32,7 +32,7 @@ app.get('/recipes/:id', async (req, res) => {
   res.json({ recipe });
 });
 
-app.recipe('/recipes', async (req, res) => {
+app.post('/recipes', async (req, res) => {
   const existingRecipes = await getStoredRecipes();
   const recipeData = req.body;
   const newPost = {
