@@ -15,7 +15,7 @@ function RecipeList() {
     fetchRecipes();
   }, []);
 
-  console.log(recipes);
+  // console.log(recipes);
   return (
     <div>
        {recipes.length > 0 && (

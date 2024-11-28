@@ -13,6 +13,10 @@ function Recipe({recipe}) {
       <p>{recipe.supported_devices}</p>
         <img src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${recipe.id}.jpg`} alt={recipe.title} />
       <div className="btnContainer">
+        {/* TODO
+        ・フラグ追加してボタンの見え方を変化させる。
+        ・作ったことあればカラフルボタンに
+        ・ボタン押下したらフラグ状態を更新する*/}
         <button className="hasCooked">作ったことある！</button>
         <button className='wantToCook'>作りたい！</button>
       </div>
