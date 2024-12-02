@@ -44,3 +44,23 @@ button.wantToCook:hover {
   box-shadow: none;
   color: white;
 }
+
+button.isHasCooked {
+  background-color: #ff9c2d;
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+button.isHasCooked:hover {
+  cursor: pointer;
+}
+
+button.isWantToCook {
+  background-color: #cf6f6f;
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+button.isWantToCook:hover {
+  cursor: pointer;
+}

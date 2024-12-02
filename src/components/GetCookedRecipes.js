@@ -1,3 +1,4 @@
+// GetCookedRecipes.js
 import React from 'react'
 import { useEffect, useState } from 'react';
 import { db } from '../firebase';
@@ -19,67 +20,39 @@ function GetCookedRecipes() {
         );
         const userRecipesSnapshot = await getDocs(userRecipesQuery);
 
-
-        // userRecipesSnapshotの内容を確認
-        console.log('User recipes found:', userRecipesSnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        })));
-
-
         // 2. 各user_recipeに対応するrecipeの詳細を取得
         const recipesWithDetails = await Promise.all(
           userRecipesSnapshot.docs.map(async (userRecipeDoc) => {
             const userRecipeData = userRecipeDoc.data();
-            // recipesコレクションから対応するレシピを取得
-            // ここで、recipeIdをuidとして使用
-            const recipeDoc = await getDoc(doc(db, 'recipes', userRecipeData.recipeId));
 
-            // recipesコレクションをクエリで検索
-            const recipeQuery = query(
+            const recipesQuery = query(
               collection(db, 'recipes'),
               where('uid', '==', userRecipeData.recipeId)
             );
-            const recipeSnapshot = await getDocs(recipeQuery);
-            console.log("recipeSnapshot:::",recipeSnapshot.docs.map(doc => ({
-              id: doc.id,
-              ...doc.data()
-            })));
 
-            // recipesコレクションのドキュメント取得を確認
-            console.log('Fetching recipe:', userRecipeData.recipeId);
-            console.log('Recipe exists:', recipeDoc.exists());
-
-
-            if (recipeDoc.exists()) {
-              return {
-                id: userRecipeDoc.id,
-                ...userRecipeData,
-                recipeDetails: {
-                  ...recipeDoc.data(),
-                  id: recipeDoc.id
-                }
-              };
+            const recipesSnapshot = await getDocs(recipesQuery);
+            if(recipesSnapshot.empty) {
+              return null;
+            }else{
+              return recipesSnapshot.docs.map(doc => ({
+                ...doc.data()
+              }));
             }
-            return null;
           })
         );
 
-        // デバッグ用のログ
-        console.log('Found recipes:', recipesWithDetails);
-
         // nullを除外して結果を設定
-        setRecipes(recipesWithDetails.filter(recipe => recipe !== null));
+        const filteredRecipe = recipesWithDetails.filter(recipe => recipe !== null);
+        setRecipes(filteredRecipe);
       } catch (error) {
         console.error('Error fetching cooked recipes:', error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchCookedRecipes();
   }, []);
-
+  console.log("recipes: ", recipes);
   return (
     <div>
       <h2>調理済みレシピ一覧</h2>
@@ -87,15 +60,21 @@ function GetCookedRecipes() {
         <p>読み込み中...</p>
       ) : (
         <div>
-          {recipes}
-          {recipes.map((recipe) => (
-            <div key={recipe.id}>
-              <h3>{recipe.title}</h3>
-              <p>レシピID: {recipe.recipeId}</p>
-              {/* その他の表示したい情報 */}
-            </div>
-          ))}
-          <p>全{recipes.length}件</p>
+          <div className="grid gap-4">
+            {recipes.map((recipeArray, outerIndex) => (
+              // 外側の配列に対するmapで、一意のkeyを設定
+              <div key={`recipe-group-${outerIndex}`}>
+                {/* 内側の配列に対するmap */}
+                {recipeArray.map((recipe) => (
+                  <ul key={recipe.id} className="p-4 border rounded shadow">
+                    <li>{recipe.title}, カテゴリー: {recipe.category}, 対応デバイス: {recipe.supported_devices}, ユーザーID: {recipe.uid}</li>
+                  </ul>
+                ))}
+              </div>
+            ))}
+          </div>
+          <p className="mt-4">全{recipes.flat().length}件</p>
+
         </div>
       )}
     </div>
