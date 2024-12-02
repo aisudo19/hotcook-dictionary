@@ -2,10 +2,10 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import './GetCookedRecipes.css';
 import Recipe from './Recipe';
+import './GetWantToCookRecipes.css';
 
-function GetCookedRecipes() {
+function GetWantToCookRecipes() {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -15,7 +15,7 @@ function GetCookedRecipes() {
       try {
         const recipesQuery = query(
           collection(db, 'recipes'),
-          where('hasCooked', '==', true)
+          where('wantToCook', '==', true)
         );
         const recipesSnapshot = await getDocs(recipesQuery);
         console.log("recipesSnapshot: ", recipesSnapshot.docs.map((doc => doc.data())));
@@ -36,7 +36,7 @@ function GetCookedRecipes() {
   console.log("recipes: ", recipes);
   return (
     <div>
-      <h2>作ったことある！レシピ一覧</h2>
+      <h2>作りたい！レシピ一覧</h2>
       {loading ? (
         <p>読み込み中...</p>
       ) : (
@@ -51,4 +51,4 @@ function GetCookedRecipes() {
   )
 }
 
-export default GetCookedRecipes
+export default GetWantToCookRecipes

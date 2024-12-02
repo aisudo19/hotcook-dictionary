@@ -4,7 +4,7 @@ import RecipeList from './components/RecipeList';
 import Navbar from './components/Navbar';
 import { useState } from 'react';
 import GetCookedRecipes from './components/GetCookedRecipes';
-import WantRecipes from './components/WantRecipes';
+import GetWantToCookRecipes from './components/GetWantToCookRecipes';
 import BulkUpload from './components/BulkUpload';
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
       <Navbar isAuth={isAuth}/>
       <Routes>
         <Route path="/" element={<RecipeList />}></Route>
-        <Route path="/want" element={<WantRecipes />}></Route>
+        <Route path="/want" element={<GetWantToCookRecipes />}></Route>
         <Route path="/experienced" element={<GetCookedRecipes />}></Route>
         <Route path="/bulk_upload" element={<BulkUpload />}></Route>
         {/* <Route path="/login" element={<Login />} />

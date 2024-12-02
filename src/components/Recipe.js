@@ -9,24 +9,23 @@ function Recipe({recipe}) {
   const [isHasCooked, setIsHasCooked] = useState(recipe.hasCooked);
   const [isWantToCook, setIsWantToCook] = useState(recipe.wantToCook);
 
-  const handleAddCookedList = async (recipeId) => {
+  const handleToggleCookedList = async (recipeId) => {
     setIsHasCooked(!isHasCooked);
+    console.log("isHasCooked1: ", isHasCooked);
     try {
-      // recipesコレクションから特定のrecipeIdを持つドキュメントを検索
       const q = query(
         collection(db, 'recipes'),
         where('UID', '==', recipeId)
       );
 
-      // クエリの実行
       const querySnapshot = await getDocs(q);
 
-      // 該当するドキュメントが見つかった場合、更新を実行
       querySnapshot.forEach(async (document) => {
         await updateDoc(document.ref, {
-          hasCooked: true
+          hasCooked: isHasCooked
         });
       });
+      console.log("isHasCooked2: ", isHasCooked);
 
       console.log('Update successful');
     } catch (error) {
@@ -34,22 +33,19 @@ function Recipe({recipe}) {
     }
   }
 
-  const handleAddWantsList = async(recipeId) => {
+  const handleToggleWantsList = async(recipeId) => {
     setIsWantToCook(!isWantToCook);
     try {
-      // recipesコレクションから特定のrecipeIdを持つドキュメントを検索
       const q = query(
         collection(db, 'recipes'),
         where('UID', '==', recipeId)
       );
 
-      // クエリの実行
       const querySnapshot = await getDocs(q);
 
-      // 該当するドキュメントが見つかった場合、更新を実行
       querySnapshot.forEach(async (document) => {
         await updateDoc(document.ref, {
-          wantToCook: true
+          wantToCook: isWantToCook
         });
       });
 
@@ -71,8 +67,8 @@ function Recipe({recipe}) {
         ・フラグ追加してボタンの見え方を変化させる。
         ・作ったことあればカラフルボタンに
         ・ボタン押下したらフラグ状態を更新する*/}
-        <button onClick={() => {handleAddCookedList(recipe.UID)}}className={isHasCooked ? "hasCooked isHasCooked" : "hasCooked"}>作ったことある！</button>
-        <button onClick={() => {handleAddWantsList(recipe.UID)}}className={isWantToCook ? "wantToCook isWantToCook" : "wantToCook"}>作りたい！</button>
+        <button onClick={() => {handleToggleCookedList(recipe.UID)}}className={isHasCooked ? "hasCooked isHasCooked" : "hasCooked"}>作ったことある！</button>
+        <button onClick={() => {handleToggleWantsList(recipe.UID)}}className={isWantToCook ? "wantToCook isWantToCook" : "wantToCook"}>作りたい！</button>
       </div>
     </li>
   )
