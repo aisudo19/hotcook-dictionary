@@ -6,16 +6,16 @@ import { collection, query, where, getDocs, updateDoc } from 'firebase/firestore
 import { db } from '../firebase';
 
 function Recipe({recipe}) {
-  const [isHasCooked, setIsHasCooked] = useState(true);
-  const [isWantToCook, setIsWantToCook] = useState(true);
+  const [isHasCooked, setIsHasCooked] = useState(recipe.hasCooked);
+  const [isWantToCook, setIsWantToCook] = useState(recipe.wantToCook);
 
   const handleAddCookedList = async (recipeId) => {
     setIsHasCooked(!isHasCooked);
     try {
       // recipesコレクションから特定のrecipeIdを持つドキュメントを検索
       const q = query(
-        collection(db, 'user_recipes'),
-        where('recipeId', '==', recipeId)
+        collection(db, 'recipes'),
+        where('UID', '==', recipeId)
       );
 
       // クエリの実行
@@ -39,8 +39,8 @@ function Recipe({recipe}) {
     try {
       // recipesコレクションから特定のrecipeIdを持つドキュメントを検索
       const q = query(
-        collection(db, 'user_recipes'),
-        where('recipeId', '==', recipeId)
+        collection(db, 'recipes'),
+        where('UID', '==', recipeId)
       );
 
       // クエリの実行
@@ -61,10 +61,10 @@ function Recipe({recipe}) {
   return (
     <li className="recipeContents">
       <p>{recipe.title}</p>
-      <Link to={`https://cocoroplus.jp.sharp/kitchen/recipe/hotcook/KN-HW24H/${recipe.UID}`}>
+      {/* <Link to={`https://cocoroplus.jp.sharp/kitchen/recipe/hotcook/KN-HW24H/${recipe.UID}`}>
         <p>公式レシピページ</p>
-      </Link>
-      <p>{recipe.category === 'main' ? '主菜' : '副菜'}</p>
+      </Link> */}
+      {/* <p>{recipe.category === 'main' ? '主菜' : '副菜'}</p> */}
         <img src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${recipe.UID}.jpg`} alt={recipe.title} />
       <div className="btnContainer">
         {/* TODO

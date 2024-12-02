@@ -10,7 +10,7 @@ const BulkUpload = () => {
 
   const handleCSVUpload = async (event) => {
     if (!collectionName.trim()) {  // コレクション名の入力チェック
-      setResult('コレクション名を入力してください');
+      setResult('追加するコレクション名を入力してください');
       return;
     }
 
