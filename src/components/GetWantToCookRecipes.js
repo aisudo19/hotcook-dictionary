@@ -18,7 +18,6 @@ function GetWantToCookRecipes() {
           where('wantToCook', '==', true)
         );
         const recipesSnapshot = await getDocs(recipesQuery);
-        console.log("recipesSnapshot: ", recipesSnapshot.docs.map((doc => doc.data())));
 
         setRecipes(recipesSnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -33,14 +32,13 @@ function GetWantToCookRecipes() {
     };
     fetchCookedRecipes();
   }, []);
-  console.log("recipes: ", recipes);
   return (
-    <div>
+    <div className='want-to-cooke__recipeListWrapper'>
       <h2>作りたい！レシピ一覧</h2>
       {loading ? (
         <p>読み込み中...</p>
       ) : (
-        <ul className='recipeListContainer'>
+        <ul className='want-to-cooke__recipeListContainer'>
           {recipes.map((recipe) => (
             <Recipe key={recipe.id} recipe={recipe} />
           ))}

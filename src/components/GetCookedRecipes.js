@@ -35,12 +35,12 @@ function GetCookedRecipes() {
   }, []);
   console.log("recipes: ", recipes);
   return (
-    <div>
+    <div className='cooked-recipes__recipeListWrapper'>
       <h2>作ったことある！レシピ一覧</h2>
       {loading ? (
         <p>読み込み中...</p>
       ) : (
-        <ul className='recipeListContainer'>
+        <ul className='cooked-recipes__recipeListContainer'>
           {recipes.map((recipe) => (
             <Recipe key={recipe.id} recipe={recipe} />
           ))}

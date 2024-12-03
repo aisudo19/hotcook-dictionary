@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { collection, addDoc, writeBatch, doc } from 'firebase/firestore';
 import { db } from '../firebase';
 import Papa from 'papaparse';
+import './BulkUpload.css';
 
 const BulkUpload = () => {
   const [loading, setLoading] = useState(false);
@@ -91,7 +92,7 @@ const BulkUpload = () => {
   };
 
   return (
-    <div>
+    <div className='bulk-upload__wrapper'>
       <h2>データ一括アップロード</h2>
 
       <div>
