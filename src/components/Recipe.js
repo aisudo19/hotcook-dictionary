@@ -1,6 +1,4 @@
-// Recipe.js
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
 import './Recipe.css';
 import { collection, query, where, getDocs, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -10,8 +8,7 @@ function Recipe({recipe}) {
   const [isWantToCook, setIsWantToCook] = useState(recipe.wantToCook);
 
   const handleToggleCookedList = async (recipeId) => {
-    setIsHasCooked(!isHasCooked);
-    console.log("isHasCooked1: ", isHasCooked);
+    const newIsHasCooked = !isHasCooked;
     try {
       const q = query(
         collection(db, 'recipes'),
@@ -20,13 +17,13 @@ function Recipe({recipe}) {
 
       const querySnapshot = await getDocs(q);
 
-      querySnapshot.forEach(async (document) => {
-        await updateDoc(document.ref, {
-          hasCooked: isHasCooked
+      if(!querySnapshot.empty) {
+        const firstDocument = querySnapshot.docs[0];
+        await updateDoc(firstDocument.ref, {
+          hasCooked: newIsHasCooked
         });
-      });
-      console.log("isHasCooked2: ", isHasCooked);
-
+      };
+      setIsHasCooked(!isHasCooked);
       console.log('Update successful');
     } catch (error) {
       console.error('Error updating document: ', error);
@@ -34,7 +31,7 @@ function Recipe({recipe}) {
   }
 
   const handleToggleWantsList = async(recipeId) => {
-    setIsWantToCook(!isWantToCook);
+    const newIsWantToCook = !isWantToCook;
     try {
       const q = query(
         collection(db, 'recipes'),
@@ -43,12 +40,13 @@ function Recipe({recipe}) {
 
       const querySnapshot = await getDocs(q);
 
-      querySnapshot.forEach(async (document) => {
-        await updateDoc(document.ref, {
-          wantToCook: isWantToCook
+      if(!querySnapshot.empty){
+        const firstDoc = querySnapshot.docs[0];
+        await updateDoc(firstDoc.ref, {
+          wantToCook: newIsWantToCook
         });
-      });
-
+      };
+      setIsWantToCook(!isWantToCook);
       console.log('Update successful');
     } catch (error) {
       console.error('Error updating document: ', error);
