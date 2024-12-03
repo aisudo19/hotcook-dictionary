@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import './GetCookedRecipes.css';
+import '../assets/css/GetCookedRecipes.css';
 import Recipe from './Recipe';
 
 function GetCookedRecipes() {

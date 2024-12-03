@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import Recipe from './Recipe';
-import './GetWantToCookRecipes.css';
+import '../assets/css/GetWantToCookRecipes.css';
 
 function GetWantToCookRecipes() {
   const [recipes, setRecipes] = useState([]);

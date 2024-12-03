@@ -1,4 +1,5 @@
 import React from 'react'
+import '../assets/css/SearchFilter.css';
 
 function SearchFilter({ searchTerm, filters, onSearchChange, onFilterChange }) {
   return (
@@ -19,7 +20,7 @@ function SearchFilter({ searchTerm, filters, onSearchChange, onFilterChange }) {
           checked={filters.hasCooked}
           onChange={onFilterChange}
         />
-        <label htmlFor='hasCooked'>作ったことある!</label>
+        <label className='checkbox01' htmlFor='hasCooked'>作ったことある!</label>
 
         <input
           type='checkbox'
@@ -28,7 +29,7 @@ function SearchFilter({ searchTerm, filters, onSearchChange, onFilterChange }) {
           checked={filters.wantToCook}
           onChange={onFilterChange}
         />
-        <label htmlFor='wantToCook'>作りたい！</label>
+        <label className='checkbox01' htmlFor='wantToCook'>作りたい！</label>
 
         <input
           type='checkbox'
@@ -37,7 +38,7 @@ function SearchFilter({ searchTerm, filters, onSearchChange, onFilterChange }) {
           checked={filters.never}
           onChange={onFilterChange}
         />
-        <label htmlFor='never'>作ったことない</label>
+        <label className='checkbox01' htmlFor='never'>作ったことない</label>
 
         <input
           type='checkbox'
@@ -46,7 +47,7 @@ function SearchFilter({ searchTerm, filters, onSearchChange, onFilterChange }) {
           checked={filters.dontWant}
           onChange={onFilterChange}
         />
-        <label htmlFor='dontWant'>作りたくない</label>
+          <label className='checkbox01' htmlFor='dontWant'>作りたくない</label>
       </div>
     </div>
   );

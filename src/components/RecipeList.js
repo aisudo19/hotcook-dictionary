@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import Recipe from './Recipe';
 import SearchFilter from './SearchFilter';
 import { useRecipeFilter } from '../hooks/useRecipeFilter';
-import './RecipeList.css';
+import '../assets/css/RecipeList.css';
 import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 

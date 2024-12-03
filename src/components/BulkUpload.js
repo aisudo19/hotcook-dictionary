@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { collection, addDoc, writeBatch, doc } from 'firebase/firestore';
 import { db } from '../firebase';
 import Papa from 'papaparse';
-import './BulkUpload.css';
+import '../assets/css/BulkUpload.css';
 
 const BulkUpload = () => {
   const [loading, setLoading] = useState(false);

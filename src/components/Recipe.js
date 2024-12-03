@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Recipe.css';
+import '../assets/css/Recipe.css';
 import { collection, query, where, getDocs, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 

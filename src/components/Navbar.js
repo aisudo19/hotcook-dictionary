@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { faHome, faStar, faHeart, faRightToBracket,faRightFromBracket, faUpload } from '@fortawesome/free-solid-svg-icons';
-import './Navbar.css';
+import '../assets/css/Navbar.css';
 
 function Navbar({isAuth}) {
   return (
