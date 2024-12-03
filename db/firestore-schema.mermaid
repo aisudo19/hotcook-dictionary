@@ -1,0 +1,42 @@
+erDiagram
+    users ||--o{ user_recipes : has
+    recipes ||--o{ user_recipes : referenced_by
+    recipes ||--o{ recipe_ingredients : contains
+
+    users {
+        string uid PK
+        string displayName
+        string email
+        timestamp createdAt
+        timestamp updatedAt
+    }
+
+    recipes {
+        string recipeId PK
+        string title
+        string deviceName
+        string category
+        text memo
+        timestamp createdAt
+        timestamp updatedAt
+    }
+
+    user_recipes {
+        string id PK
+        string userId FK
+        string recipeId FK
+        boolean hasCooked
+        boolean wantToCook
+        int cookCount
+        timestamp lastCookedAt
+        timestamp createdAt
+        timestamp updatedAt
+    }
+
+    recipe_ingredients {
+        string id PK
+        string recipeId FK
+        string ingredientName
+        string amount
+        int order
+    }

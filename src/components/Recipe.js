@@ -24,7 +24,6 @@ function Recipe({recipe}) {
         });
       };
       setIsHasCooked(!isHasCooked);
-      console.log('Update successful');
     } catch (error) {
       console.error('Error updating document: ', error);
     }
@@ -47,7 +46,6 @@ function Recipe({recipe}) {
         });
       };
       setIsWantToCook(!isWantToCook);
-      console.log('Update successful');
     } catch (error) {
       console.error('Error updating document: ', error);
     }
@@ -61,10 +59,6 @@ function Recipe({recipe}) {
       {/* <p>{recipe.category === 'main' ? '主菜' : '副菜'}</p> */}
         <img src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${recipe.UID}.jpg`} alt={recipe.title} />
       <div className="btnContainer">
-        {/* TODO
-        ・フラグ追加してボタンの見え方を変化させる。
-        ・作ったことあればカラフルボタンに
-        ・ボタン押下したらフラグ状態を更新する*/}
         <button onClick={() => {handleToggleCookedList(recipe.UID)}}className={isHasCooked ? "hasCooked isHasCooked" : "hasCooked"}>作ったことある！</button>
         <button onClick={() => {handleToggleWantsList(recipe.UID)}}className={isWantToCook ? "wantToCook isWantToCook" : "wantToCook"}>作りたい！</button>
       </div>
