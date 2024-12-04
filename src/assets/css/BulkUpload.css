@@ -14,3 +14,28 @@
 input[type="text"] {
   border: 3px solid #ccc;
 }
+
+input[type="password"] {
+  width: 250px;
+  border: 3px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  width: 250px;
+  transition: all 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: red;
+  transform: translateY(3px);
+  box-shadow: none;
+  cursor: pointer;
+}
+
+form {
+  display: grid;
+  justify-content: center;
+}
