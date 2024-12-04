@@ -36,6 +36,7 @@ button.hasCooked:hover {
   transform: translateY(3px);
   box-shadow: none;
   color: white;
+  cursor: pointer;
 }
 
 button.wantToCook:hover {
@@ -43,6 +44,7 @@ button.wantToCook:hover {
   transform: translateY(3px);
   box-shadow: none;
   color: white;
+  cursor: pointer;
 }
 
 button.isHasCooked {
