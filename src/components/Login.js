@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { provider, auth } from '../firebase';
 import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import '../assets/css/Login.css';
 
 function Login({setIsAuth}) {
   const navigate = useNavigate();
@@ -17,7 +18,6 @@ function Login({setIsAuth}) {
 
   return (
     <div>
-      <p>ログインする</p>
       <button onClick={loginWithGoogle}>Googleでログインする</button>
     </div>
   )

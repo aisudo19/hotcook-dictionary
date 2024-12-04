@@ -5,8 +5,11 @@ import { useRecipeFilter } from '../hooks/useRecipeFilter';
 import '../assets/css/RecipeList.css';
 import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 
-function RecipeList() {
+function RecipeList({isAuth}) {
   const [recipeList, setRecipeList] = useState([]);
 
   const {
@@ -27,26 +30,35 @@ function RecipeList() {
     fetchRecipes();
   }, [fetchRecipes]);
 
-  return (
-    <div className='recipeListWrapper'>
-      <h2>レシピ一覧</h2>
+  if(!isAuth) {
+    return (
+      <div className='recipeListWrapper'>
+        <h2>レシピ一覧</h2>
+        <Link to='/login'><FontAwesomeIcon icon={faRightToBracket} />ログインしてレシピを見る</Link>
+      </div>
+    )
+  } else {
+    return (
+      <div className='recipeListWrapper'>
+        <h2>レシピ一覧</h2>
 
-      <SearchFilter
-        searchTerm={searchTerm}
-        filters={filters}
-        onSearchChange={handleSearch}
-        onFilterChange={handleFilterChange}
-      />
+        <SearchFilter
+          searchTerm={searchTerm}
+          filters={filters}
+          onSearchChange={handleSearch}
+          onFilterChange={handleFilterChange}
+        />
 
-       {filteredRecipes.length > 0 && (
-        <ul className="recipeListContainer">
-          {filteredRecipes.map((recipe) => (
-            <Recipe key={recipe.id} recipe={recipe} />
-          ))}
-        </ul>
-      )}
-    </div>
-  )
+         {filteredRecipes.length > 0 && (
+          <ul className="recipeListContainer">
+            {filteredRecipes.map((recipe) => (
+              <Recipe key={recipe.id} recipe={recipe} />
+            ))}
+          </ul>
+        )}
+      </div>
+    )
+  }
 }
 
 export default RecipeList

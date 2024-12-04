@@ -1,0 +1,11 @@
+button {
+  width: 200px;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background-color: #ff9c2d;
+  transform: translateY(3px);
+  cursor: pointer;
+  box-shadow: none;
+}

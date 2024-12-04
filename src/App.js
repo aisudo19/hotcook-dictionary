@@ -14,7 +14,7 @@ function App() {
     <Router>
       <Navbar isAuth={isAuth}/>
       <Routes>
-        <Route path="/" element={<RecipeList />}></Route>
+        <Route path="/" element={<RecipeList isAuth={isAuth}/>}></Route>
         <Route path="/login" element={<Login setIsAuth={setIsAuth}/>} />
         <Route path="/logout" element={<Logout setIsAuth={setIsAuth}/>} />
         <Route path="/bulk_upload" element={<BulkUpload />}></Route>
