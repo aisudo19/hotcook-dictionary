@@ -10,3 +10,7 @@
   text-align: left;
   display: inline-block;
 }
+
+input[type="text"] {
+  border: 3px solid #ccc;
+}

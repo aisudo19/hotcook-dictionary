@@ -7,7 +7,10 @@ import '../assets/css/BulkUpload.css';
 const BulkUpload = () => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState('');
-  const [collectionName, setCollectionName] = useState(''); // コレクション名のstate追加
+  const [collectionName, setCollectionName] = useState('');
+  const correctPassword = process.env.REACT_APP_CORRECT_PASSWORD;
+  const [password, setPassword] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleCSVUpload = async (event) => {
     if (!collectionName.trim()) {  // コレクション名の入力チェック
@@ -91,45 +94,78 @@ const BulkUpload = () => {
     }
   };
 
-  return (
-    <div className='bulk-upload__wrapper'>
-      <h2>データ一括アップロード</h2>
+  const handlePasswordSubmit = (e) => {
+    e.preventDefault();
+    console.log("correctPassword",correctPassword)
+    console.log("password",password)
+    if(password === correctPassword) {
+      setIsAuthenticated(true);
+    } else {
+      alert('パスワードが違います');
+    }
+  }
 
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  }
+
+  if(!isAuthenticated) {
+    return (
       <div>
-        <h3>コレクション名</h3>
-        <input
-          type="text"
-          value={collectionName}
-          onChange={(e) => setCollectionName(e.target.value)}
-          placeholder="コレクション名を入力"
-          disabled={loading}
-        />
+        <h2>パスワードを入力してください</h2>
+        <form onSubmit={handlePasswordSubmit}>
+          <input
+            type="password"
+            value={password}
+            onChange={handlePasswordChange}
+            placeholder="パスワードを入力"
+            />
+            <button
+            type="submit">送信</button>
+        </form>
       </div>
+    )
+  } else {
+    return (
+      <div className='bulk-upload__wrapper'>
+        <h2>データ一括アップロード</h2>
 
-      <div>
-        <h3>CSVアップロード</h3>
-        <input
-          type="file"
-          accept=".csv"
-          onChange={handleCSVUpload}
-          disabled={loading}
-        />
+        <div>
+          <h3>コレクション名</h3>
+          <input
+            type="text"
+            value={collectionName}
+            onChange={(e) => setCollectionName(e.target.value)}
+            placeholder="コレクション名を入力"
+            disabled={loading}
+          />
+        </div>
+
+        <div>
+          <h3>CSVアップロード</h3>
+          <input
+            type="file"
+            accept=".csv"
+            onChange={handleCSVUpload}
+            disabled={loading}
+          />
+        </div>
+
+        <div>
+          <h3>JSONアップロード</h3>
+          <input
+            type="file"
+            accept=".json"
+            onChange={handleJSONUpload}
+            disabled={loading}
+          />
+        </div>
+
+        {loading && <p>アップロード中...</p>}
+        {result && <p>{result}</p>}
       </div>
-
-      <div>
-        <h3>JSONアップロード</h3>
-        <input
-          type="file"
-          accept=".json"
-          onChange={handleJSONUpload}
-          disabled={loading}
-        />
-      </div>
-
-      {loading && <p>アップロード中...</p>}
-      {result && <p>{result}</p>}
-    </div>
-  );
+    );
+  }
 };
 
 export default BulkUpload;
