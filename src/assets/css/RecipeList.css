@@ -1,6 +1,8 @@
 .recipeListWrapper {
   background-color: pink;
   margin-top: 0;
+  min-height: 100vh;
+  text-align: center;
 }
 
 .recipeListWrapper h2 {
