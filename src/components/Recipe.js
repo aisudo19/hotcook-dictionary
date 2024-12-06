@@ -55,11 +55,12 @@ function Recipe({recipe, userRecipe, onUpdate }) {
       <div className="btnContainer">
         <button onClick={() => {handleToggleCookedList(recipe.UID)}}
         className={userRecipe?.hasCooked ? "hasCooked isHasCooked" : "hasCooked"}
-          >作ったことある！ ({userRecipe?.cookCount ?? 0}回)</button>
+          >作ったことある！ </button>
         <button onClick={handleToggleWantsList}
         className={userRecipe?.wantToCook ? "wantToCook isWantToCook" : "wantToCook"}
         >作りたい！</button>
       </div>
+      作った回数({userRecipe?.cookCount ?? 0}回)
     </li>
   )
 }
