@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../assets/css/Login.css';
 import { useAuth } from '../contexts/AuthContext';
 
-function Login({setIsAuth}) {
+function Login() {
   const navigate = useNavigate();
   const { loginWithGoogle } = useAuth();
 

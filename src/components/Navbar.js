@@ -6,7 +6,7 @@ import '../assets/css/Navbar.css';
 import { useAuth } from '../contexts/AuthContext';
 
 function Navbar({isAuth}) {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   return (
     <nav>

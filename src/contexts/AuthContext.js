@@ -19,7 +19,6 @@ export const AuthProvider = ({ children, setIsAuth }) => {
       setIsAuth(true);
       setUser(result.user);
       await saveUserToFirestore(result.user);
-      return result;
     } catch(error) {
       console.error('ログインエラー:', error);
     };
