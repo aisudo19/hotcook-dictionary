@@ -13,7 +13,7 @@ import { useAuth } from '../contexts/AuthContext';
 function RecipeList({isAuth}) {
   const [recipes, setRecipes] = useState([]);
   const [userRecipes, setUserRecipes] = useState({});
-  const { user } = useAuth();  // 現在のユーザー情報を取得
+  const { user } = useAuth();
 
   const {
     filteredRecipes,
@@ -25,10 +25,12 @@ function RecipeList({isAuth}) {
 
   const fetchRecipesWithUserData = useCallback(async () => {
     const recipesSnapshot = await getDocs(collection(db, 'recipes'));
+    console.log("recipesSnapshot: ", recipesSnapshot);
     const recipeData = recipesSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data()
     }));
+    console.log("recipeData: ", recipeData);
 
     if(user) {
       const userRecipesQuery = query(

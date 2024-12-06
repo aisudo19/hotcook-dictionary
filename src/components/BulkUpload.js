@@ -8,6 +8,7 @@ const BulkUpload = () => {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState('');
   const [collectionName, setCollectionName] = useState('');
+  const [collectionPrimaryKey, setcollectionPrimaryKey] = useState('');
   const correctPassword = process.env.REACT_APP_CORRECT_PASSWORD;
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -82,7 +83,9 @@ const BulkUpload = () => {
           return acc;
         }, {});
 
-        const docRef = doc(collectionRef);
+        const docRef = collectionPrimaryKey && item[collectionPrimaryKey]
+        ? doc(db, collectionName, item[collectionPrimaryKey])
+        : doc(collectionRef);
         batch.set(docRef, convertedItem);
       });
 
@@ -137,6 +140,17 @@ const BulkUpload = () => {
             value={collectionName}
             onChange={(e) => setCollectionName(e.target.value)}
             placeholder="コレクション名を入力"
+            disabled={loading}
+          />
+        </div>
+
+        <div>
+          <h3>主キー（任意）</h3>
+          <input
+            type="text"
+            value={collectionPrimaryKey}
+            onChange={(e) => setcollectionPrimaryKey(e.target.value)}
+            placeholder="コレクションの主キー名を入力"
             disabled={loading}
           />
         </div>
