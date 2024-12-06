@@ -6,20 +6,25 @@ import { useState } from 'react';
 import BulkUpload from './components/BulkUpload';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import { AuthProvider } from './contexts/AuthContext';
+import Profile from './components/Profile';
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
   return (
-    <Router>
-      <Navbar isAuth={isAuth}/>
-      <Routes>
-        <Route path="/" element={<RecipeList isAuth={isAuth}/>}></Route>
-        <Route path="/login" element={<Login setIsAuth={setIsAuth}/>} />
-        <Route path="/logout" element={<Logout setIsAuth={setIsAuth}/>} />
-        <Route path="/bulk_upload" element={<BulkUpload />}></Route>
-      </Routes>
-    </Router>
+    <AuthProvider setIsAuth={setIsAuth}>
+      <Router>
+        <Navbar isAuth={isAuth}/>
+        <Routes>
+          <Route path="/" element={<RecipeList isAuth={isAuth}/>}></Route>
+          <Route path="/login" element={<Login setIsAuth={setIsAuth}/>} />
+          <Route path="/logout" element={<Logout setIsAuth={setIsAuth}/>} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/bulk_upload" element={<BulkUpload />}></Route>
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

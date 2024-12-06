@@ -1,24 +1,24 @@
-import React, { useState } from 'react'
-import { provider, auth } from '../firebase';
-import { signInWithPopup } from 'firebase/auth';
+import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../assets/css/Login.css';
+import { useAuth } from '../contexts/AuthContext';
 
 function Login({setIsAuth}) {
   const navigate = useNavigate();
-  const loginWithGoogle = () => {
-    signInWithPopup(auth, provider).then((result) => {
-      localStorage.setItem('isAuth', true);
-      setIsAuth(true);
+  const { loginWithGoogle } = useAuth();
+
+  const handleLogin = async () => {
+    try {
+      await loginWithGoogle();
       navigate("/");
-    }).catch((error) => {
+    } catch (error) {
       console.error('ログインエラー:', error);
-    });
+    }
   }
 
   return (
     <div>
-      <button onClick={loginWithGoogle}>Googleでログインする</button>
+      <button onClick={handleLogin} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Googleでログインする</button>
     </div>
   )
 }
