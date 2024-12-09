@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../assets/css/Recipe.css';
-import { collection, query, where, getDocs, updateDoc, setDoc, doc, addDoc } from 'firebase/firestore';
+import { collection, setDoc, doc, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -60,7 +60,6 @@ function Recipe({recipe, userRecipe, onUpdate }) {
         className={userRecipe?.wantToCook ? "wantToCook isWantToCook" : "wantToCook"}
         >作りたい！</button>
       </div>
-      作った回数({userRecipe?.cookCount ?? 0}回)
     </li>
   )
 }

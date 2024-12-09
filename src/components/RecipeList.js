@@ -25,12 +25,10 @@ function RecipeList({isAuth}) {
 
   const fetchRecipesWithUserData = useCallback(async () => {
     const recipesSnapshot = await getDocs(collection(db, 'recipes'));
-    console.log("recipesSnapshot: ", recipesSnapshot);
     const recipeData = recipesSnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data()
     }));
-    console.log("recipeData: ", recipeData);
 
     if(user) {
       const userRecipesQuery = query(
