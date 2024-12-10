@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { collection, addDoc, writeBatch, doc } from 'firebase/firestore';
+import { collection, writeBatch, doc } from 'firebase/firestore';
 import { db } from '../firebase';
 import Papa from 'papaparse';
 import '../assets/css/BulkUpload.css';
@@ -82,7 +82,7 @@ const BulkUpload = () => {
           }
           return acc;
         }, {});
-
+        // 主キーが指定されている場合は、その値をドキュメントIDとして使用
         const docRef = collectionPrimaryKey && item[collectionPrimaryKey]
         ? doc(db, collectionName, item[collectionPrimaryKey])
         : doc(collectionRef);
