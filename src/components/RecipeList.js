@@ -11,50 +11,61 @@ import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../contexts/AuthContext';
 
 function RecipeList({isAuth}) {
-  const [recipes, setRecipes] = useState([]);
-  const [userRecipes, setUserRecipes] = useState({});
+  const [combinedRecipes, setCombinedRecipes] = useState([]);
   const { user } = useAuth();
 
   const {
-    filteredRecipes,
+    filteredRecipes = [],
     searchTerm,
     filters,
     handleSearch,
     handleFilterChange
-  } = useRecipeFilter(recipes);
+  } = useRecipeFilter(combinedRecipes);
 
-  const fetchRecipesWithUserData = useCallback(async () => {
-    const recipesSnapshot = await getDocs(collection(db, 'recipes'));
-    const recipeData = recipesSnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data()
-    }));
+  const fetchCombinedRecipeData = useCallback(async () => {
+    try {
+      // 1. レシピの基本情報を取得
+      const recipesSnapshot = await getDocs(collection(db, 'recipes'));
+      const recipesData = recipesSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      // 2. ユーザーに紐づくレシピ情報を取得
+      let userRecipesData = {};
+      if (user) {
+        const userRecipesQuery = query(
+          collection(db, 'user_recipes'),
+          where('userId', '==', user.uid)
+        );
+        const userRecipesSnapshot = await getDocs(userRecipesQuery);
+        userRecipesSnapshot.docs.forEach(doc => {
+          const data = doc.data();
+          userRecipesData[data.recipeId] = {
+            id: doc.id,
+            ...data
+          };
+        });
+      }
 
-    if(user) {
-      const userRecipesQuery = query(
-        collection(db, 'user_recipes'),
-        where('userId', '==' , user.uid)
-      )
-
-      const userRecipesSnapshot = await getDocs(userRecipesQuery);
-      const userRecipesMap = {};
-
-      userRecipesSnapshot.docs.forEach((doc) => {
-        const data = doc.data();
-        userRecipesMap[data.recipeId] = {
-          id: doc.id,
-          ...data
-        };
-      });
-      setUserRecipes(userRecipesMap);
+      // 3. データを結合
+      const combined = recipesData.map(recipe => ({
+        ...recipe,
+        userRecipe: userRecipesData[recipe.id] || {
+          hasCooked: false,
+          wantToCook: false,
+          cookCount: 0,
+          lastCookedAt: null
+        }
+      }));
+      setCombinedRecipes(combined);
+    } catch (error) {
+      console.error('データの取得に失敗しました:', error);
     }
-
-    setRecipes(recipeData);
-  }, []);
+  }, [user]);
 
   useEffect(() => {
-    fetchRecipesWithUserData();
-  }, [fetchRecipesWithUserData]);
+    fetchCombinedRecipeData();
+  }, [fetchCombinedRecipeData]);
 
   if(!isAuth) {
     return (
@@ -75,11 +86,13 @@ function RecipeList({isAuth}) {
           onFilterChange={handleFilterChange}
         />
 
-         {filteredRecipes.length > 0 && (
+        {Array.isArray(filteredRecipes) && filteredRecipes.length > 0 && (
           <ul className="recipeListContainer">
-            {filteredRecipes.map((recipe) => (
-              <Recipe key={recipe.id} recipe={recipe} userRecipe={userRecipes[recipe.id]}
-              onUpdate={fetchRecipesWithUserData}/>
+            {filteredRecipes.map((combinedRecipe) => (
+              <Recipe
+              key={combinedRecipe.id}
+              combinedRecipe={combinedRecipe}
+              onUpdate={fetchCombinedRecipeData}/>
             ))}
           </ul>
         )}

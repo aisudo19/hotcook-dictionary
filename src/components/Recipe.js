@@ -4,15 +4,16 @@ import { collection, setDoc, doc, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from '../contexts/AuthContext';
 
-function Recipe({recipe, userRecipe, onUpdate }) {
+function Recipe({combinedRecipe, onUpdate }) {
   const { user } = useAuth();
 
   const updateUserRecipe = async (updates) => {
     try {
-      if (userRecipe) {
+      if (combinedRecipe.userRecipe.id) {
         // 既存のuser_recipesドキュメントを更新
-        await setDoc(doc(db, 'user_recipes', userRecipe.id), {
-          ...userRecipe,
+        await setDoc(doc(db, 'user_recipes', combinedRecipe.userRecipe.id), {
+          userId: user.uid,
+          recipeId: combinedRecipe.id,
           ...updates,
           updatedAt: new Date()
         }, { merge: true });
@@ -20,7 +21,7 @@ function Recipe({recipe, userRecipe, onUpdate }) {
         // 新しいuser_recipesドキュメントを作成
         await addDoc(collection(db, 'user_recipes'), {
           userId: user.uid,
-          recipeId: recipe.id,
+          recipeId: combinedRecipe.id,
           ...updates,
           cookCount: 0,
           createdAt: new Date(),
@@ -34,30 +35,30 @@ function Recipe({recipe, userRecipe, onUpdate }) {
   };
 
   const handleToggleCookedList = () => {
-    const newHasCooked = !(userRecipe?.hasCooked ?? false);
+    const newHasCooked = !combinedRecipe.userRecipe.hasCooked;
     updateUserRecipe({
       hasCooked: newHasCooked,
-      cookCount: newHasCooked ? (userRecipe?.cookCount ?? 0) + 1 : userRecipe?.cookCount ?? 0,
-      lastCookedAt: newHasCooked ? new Date() : userRecipe?.lastCookedAt
+      cookCount: newHasCooked ? (combinedRecipe.userRecipe.cookCount || 0) + 1 : combinedRecipe.userRecipe.cookCount || 0,
+      lastCookedAt: newHasCooked ? new Date() : combinedRecipe.userRecipe.lastCookedAt
     })
   };
 
   const handleToggleWantsList = () => {
     updateUserRecipe({
-      wantToCook: !(userRecipe?.wantToCook ?? false)
+      wantToCook: !combinedRecipe.userRecipe.wantToCook
     });
   }
 
   return (
     <li className="recipeContents">
-      <p>{recipe.title}</p>
-        <img src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${recipe.UID}.jpg`} alt={recipe.title} />
+      <p>{combinedRecipe.title}</p>
+        <img src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${combinedRecipe.UID}.jpg`} alt={combinedRecipe.title} />
       <div className="btnContainer">
-        <button onClick={() => {handleToggleCookedList(recipe.UID)}}
-        className={userRecipe?.hasCooked ? "hasCooked isHasCooked" : "hasCooked"}
+        <button onClick={() => {handleToggleCookedList(combinedRecipe.UID)}}
+        className={combinedRecipe.userRecipe?.hasCooked ? "hasCooked isHasCooked" : "hasCooked"}
           >作ったことある！ </button>
         <button onClick={handleToggleWantsList}
-        className={userRecipe?.wantToCook ? "wantToCook isWantToCook" : "wantToCook"}
+        className={combinedRecipe.userRecipe?.wantToCook ? "wantToCook isWantToCook" : "wantToCook"}
         >作りたい！</button>
       </div>
     </li>

@@ -12,7 +12,6 @@ export const useRecipeFilter = (recipeList) => {
 
   useEffect(() => {
     let filtered = recipeList;
-
     if (searchTerm) {
       filtered = filtered.filter((recipe) =>
         recipe.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -20,19 +19,19 @@ export const useRecipeFilter = (recipeList) => {
     }
 
     if (filters.hasCooked) {
-      filtered = filtered.filter((recipe) => recipe.hasCooked);
+      filtered = filtered.filter((recipe) => recipe.userRecipe.hasCooked);
     }
 
     if (filters.never) {
-      filtered = filtered.filter((recipe) => !recipe.hasCooked);
+      filtered = filtered.filter((recipe) => !recipe.userRecipe.hasCooked);
     }
 
     if (filters.wantToCook) {
-      filtered = filtered.filter((recipe) => recipe.wantToCook);
+      filtered = filtered.filter((recipe) => recipe.userRecipe.wantToCook);
     }
 
     if (filters.dontWant) {
-      filtered = filtered.filter((recipe) => !recipe.wantToCook);
+      filtered = filtered.filter((recipe) => !recipe.userRecipe.wantToCook);
     }
 
     setFilteredRecipes(filtered);
