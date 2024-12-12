@@ -20,3 +20,11 @@
   margin-top: 0;
   padding: 0 0 20px;
 }
+
+button.createMeals {
+  background-color: #6fb6fd;
+}
+
+ul li {
+  list-style: none;
+}
