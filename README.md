@@ -79,7 +79,7 @@ erDiagram
 
 ### サイト URL
 
-https://hotcook-dictionary-qj7cexxop-aisudo19s-projects.vercel.app/
+https://hotcook-dictionary-f6klcz2f4-aisudo19s-projects.vercel.app/
 
 ### 技術スタック
 React 18
