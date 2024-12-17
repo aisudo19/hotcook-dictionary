@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import Recipe from './Recipe';
 import SearchFilter from './SearchFilter';
+import CreateMealPlan from './CreateMealPlan';
 import { useRecipeFilter } from '../hooks/useRecipeFilter';
+import { useMealPlanner } from '../hooks/useMealPlanner';
 import '../assets/css/RecipeList.css';
 import { db } from '../firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
@@ -13,8 +15,6 @@ import { useAuth } from '../contexts/AuthContext';
 function RecipeList({isAuth}) {
   const [combinedRecipes, setCombinedRecipes] = useState([]);
   const { user } = useAuth();
-  const [mealPlanMains, setmealPlanMains] = useState([]);
-  const [mealPlanSides, setmealPlanSides] = useState([]);
 
   const {
     filteredRecipes = [],
@@ -23,6 +23,12 @@ function RecipeList({isAuth}) {
     handleSearch,
     handleFilterChange
   } = useRecipeFilter(combinedRecipes);
+
+  const {
+    mealPlanMains = [],
+    mealPlanSides = [],
+    handleCreateMealPlan
+  } = useMealPlanner(filteredRecipes, combinedRecipes);
 
   const fetchCombinedRecipeData = useCallback(async () => {
     try {
@@ -72,44 +78,6 @@ function RecipeList({isAuth}) {
   useEffect(() => {
   }, [mealPlanMains, mealPlanSides]);
 
-  const handleCreateMealPlan = () => {
-    const recipes = filteredRecipes.length === 0 ? combinedRecipes : filteredRecipes;
-
-    if(recipes.length === 0) return;
-
-    const recipeMainIds = recipes.filter((recipe) => recipe.category === 'main').map((recipe) => recipe.id);
-    const recipeSideIds = recipes.filter((recipe) => recipe.category === 'side').map((recipe) => recipe.id);
-
-    const shuffledMainIds = recipeMainIds.sort(function() {
-      const randomValue = Math.random(); // 0から1の乱数
-      const compareValue = randomValue - 0.5; // -0.5から0.5の値
-      return compareValue;
-    });
-
-    const shuffledSideIds = recipeSideIds.sort(function() {
-      const randomValue = Math.random(); // 0から1の乱数
-      const compareValue = randomValue - 0.5; // -0.5から0.5の値
-      return compareValue;
-    });
-
-    const selectedMainIds = shuffledMainIds.slice(0, Math.min(7, shuffledMainIds.length));
-
-    const selectedSideIds = shuffledSideIds.slice(0, Math.min(7, shuffledSideIds.length));
-    console.log("selectedMainIds: ",selectedMainIds, selectedSideIds);
-
-    const selectedMains = recipes.filter((recipe) =>
-      selectedMainIds.includes(recipe.id)).map((recipe) => (
-       recipe
-    ));
-
-    const selectedSides = recipes.filter((recipe) =>
-      selectedSideIds.includes(recipe.id)).map((recipe) => (
-       recipe
-    ));
-    setmealPlanMains(selectedMains);
-    setmealPlanSides(selectedSides);
-  }
-
   if(!isAuth) {
     return (
       <div className='recipeListWrapper'>
@@ -121,37 +89,17 @@ function RecipeList({isAuth}) {
     return (
       <div className='recipeListWrapper'>
         <h2>レシピ一覧</h2>
-        <button className="createMeals" onClick={handleCreateMealPlan}>献立を作成する</button>
-        {mealPlanMains.length > 0 && (
-          <div>
-            <h3>メイン</h3>
-            <ul>
-              {mealPlanMains.map((recipe) => (
-                <li key={recipe.id}>{recipe.title}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {mealPlanSides.length > 0 && (
-          <div>
-            <h3>サイド</h3>
-            <ul>
-              {mealPlanSides.map((recipe) => (
-                <li key={recipe.id}>{recipe.title}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-
+        <CreateMealPlan
+          mealPlanMains={mealPlanMains}
+          mealPlanSides={mealPlanSides}
+          onBtnClick={handleCreateMealPlan}
+        />
         <SearchFilter
           searchTerm={searchTerm}
           filters={filters}
           onSearchChange={handleSearch}
           onFilterChange={handleFilterChange}
         />
-
         {Array.isArray(filteredRecipes) && filteredRecipes.length > 0 && (
           <ul className="recipeListContainer">
             {filteredRecipes.map((combinedRecipe) => (
