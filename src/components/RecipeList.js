@@ -27,6 +27,8 @@ function RecipeList({isAuth}) {
   const {
     mealPlanMains = [],
     mealPlanSides = [],
+    showPopup,
+    setShowPopup,
     handleCreateMealPlan
   } = useMealPlanner(filteredRecipes, combinedRecipes);
 
@@ -92,6 +94,8 @@ function RecipeList({isAuth}) {
         <CreateMealPlan
           mealPlanMains={mealPlanMains}
           mealPlanSides={mealPlanSides}
+          showPopup={showPopup}
+          setShowPopup={setShowPopup}
           onBtnClick={handleCreateMealPlan}
         />
         <SearchFilter
