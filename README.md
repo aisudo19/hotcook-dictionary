@@ -87,8 +87,8 @@ Firebase
 React Testing Library
 
 ### 苦労した点
-ユーザが保存したレシピを取得するために、Firestoreのuser_recipesとrecipesコレクションを連結させる必要がありました。
-調べながら実装しました。
+複数のコンポーネントでFirebaseからのデータを共有する際の設計や、
+ユーザが保存したレシピを取得するために、Firestoreのuser_recipesとrecipesコレクションを連結させる点など
 
 ### 開発の流れ
 
