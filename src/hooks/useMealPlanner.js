@@ -50,7 +50,8 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
   const handleAddMealList = (id) => {
     const recipe = combinedRecipes.find((recipe) => recipe.id === id);
     if(!recipe) return;
-
+    //もしメイン・サイドのどちらかにすでに同じレシピが入っていたら追加しない
+    if(mealPlanMains.some((meal) => meal.id === id) || mealPlanSides.some((meal) => meal.id === id)) return;
     if(recipe.category === 'main') {
       setmealPlanMains(prevMains => [...prevMains, recipe]);
     } else {

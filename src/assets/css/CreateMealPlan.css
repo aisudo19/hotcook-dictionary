@@ -1,3 +1,10 @@
+.mealPlanWrapper {
+  position: fixed;
+  top: 60px;
+  width: 30%;
+  overflow-y: auto;
+}
+
 .mealBoard {
   padding: 15px;
   border-radius: 5px;

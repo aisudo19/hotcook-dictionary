@@ -50,17 +50,18 @@ function Recipe({combinedRecipe, onUpdate, handleAddMealList }) {
   }
 
   return (
-    <li className="recipeContents">
+    <li className={combinedRecipe.category === "main" ? "mainDish recipeContents":"sideDish recipeContents"}>
       <p>{combinedRecipe.title}</p>
         <img src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${combinedRecipe.UID}.jpg`} alt={combinedRecipe.title} />
+        <p>{combinedRecipe.category === "main" ? "メイン":"サイド"}</p>
       <div className="btnContainer">
         <button onClick={() => {handleToggleCookedList(combinedRecipe.UID)}}
         className={combinedRecipe.userRecipe?.hasCooked ? "hasCooked isHasCooked" : "hasCooked"}
-          >作ったことある！ </button>
+          >作った！ </button>
         <button onClick={handleToggleWantsList}
         className={combinedRecipe.userRecipe?.wantToCook ? "wantToCook isWantToCook" : "wantToCook"}
         >作りたい！</button>
-        <button onClick={() => handleAddMealList(combinedRecipe.UID)} className="addMeal">献立に追加する</button>
+        <button onClick={() => handleAddMealList(combinedRecipe.UID)} className="addMeal">献立に追加</button>
       </div>
     </li>
   )

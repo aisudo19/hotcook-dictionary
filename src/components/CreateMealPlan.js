@@ -4,7 +4,7 @@ import '../assets/css/CreateMealPlan.css';
 function CreateMealPlan({mealPlanMains, mealPlanSides, onBtnClick, handleDeleteMeal}) {
   return (
     <>
-      <div>
+      <div className='mealPlanWrapper'>
         <button className="createMeals" onClick={onBtnClick}>献立を作成する</button>
         {mealPlanMains && mealPlanSides &&
           <div className="mealBoard">
