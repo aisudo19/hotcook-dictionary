@@ -5,6 +5,7 @@
 .mealMain,
 .mealSide {
   display: flex;
+  justify-content: space-between;
 }
 
 .mealBoard svg {
@@ -19,6 +20,10 @@ p {
 h3 {
   margin: 0.5em;
   color: black;
+}
+
+.mealThumImg {
+  width: 60px;
 }
 
 button.deleteBtn {

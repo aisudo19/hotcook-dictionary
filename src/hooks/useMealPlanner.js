@@ -47,10 +47,22 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
     setmealPlanSides(prevSides => prevSides.filter((recipe) => recipe.id !== id));
   }
 
+  const handleAddMealList = (id) => {
+    const recipe = combinedRecipes.find((recipe) => recipe.id === id);
+    if(!recipe) return;
+
+    if(recipe.category === 'main') {
+      setmealPlanMains(prevMains => [...prevMains, recipe]);
+    } else {
+      setmealPlanSides(prevSides => [...prevSides, recipe]);
+    }
+  }
+
   return {
     mealPlanMains,
     mealPlanSides,
     handleCreateMealPlan,
-    handleDeleteMeal
+    handleDeleteMeal,
+    handleAddMealList
   };
 };

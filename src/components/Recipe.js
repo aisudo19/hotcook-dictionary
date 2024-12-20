@@ -4,7 +4,7 @@ import { collection, setDoc, doc, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from '../contexts/AuthContext';
 
-function Recipe({combinedRecipe, onUpdate }) {
+function Recipe({combinedRecipe, onUpdate, handleAddMealList }) {
   const { user } = useAuth();
 
   const updateUserRecipe = async (updates) => {
@@ -60,6 +60,7 @@ function Recipe({combinedRecipe, onUpdate }) {
         <button onClick={handleToggleWantsList}
         className={combinedRecipe.userRecipe?.wantToCook ? "wantToCook isWantToCook" : "wantToCook"}
         >作りたい！</button>
+        <button onClick={() => handleAddMealList(combinedRecipe.UID)} className="addMeal">献立に追加する</button>
       </div>
     </li>
   )

@@ -28,7 +28,8 @@ function RecipeList({isAuth}) {
     mealPlanMains = [],
     mealPlanSides = [],
     handleCreateMealPlan,
-    handleDeleteMeal
+    handleDeleteMeal,
+    handleAddMealList
   } = useMealPlanner(filteredRecipes, combinedRecipes);
 
   const fetchCombinedRecipeData = useCallback(async () => {
@@ -116,7 +117,8 @@ function RecipeList({isAuth}) {
               <Recipe
               key={combinedRecipe.id}
               combinedRecipe={combinedRecipe}
-              onUpdate={fetchCombinedRecipeData}/>
+              onUpdate={fetchCombinedRecipeData}
+              handleAddMealList={handleAddMealList}/>
             ))}
           </ul>
         )}
