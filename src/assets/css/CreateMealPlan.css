@@ -1,6 +1,14 @@
-.popup {
+.mealBoard {
   padding: 15px;
   border-radius: 5px;
+}
+.mealMain,
+.mealSide {
+  display: flex;
+}
+
+.mealBoard svg {
+  margin-top: 0.65em;
 }
 
 p {
@@ -13,8 +21,18 @@ h3 {
   color: black;
 }
 
-.popup-content {
+button.deleteBtn {
+  transition: all 0.3s;
+  background-color: #ff7171;
   color: white;
+  border: none;
+  font-weight: bold;
+  box-shadow: 2px 6px 6px -3px #777777;
+  border-radius: 30px;
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  margin: 5px;
 }
 
 @keyframes slideIn {

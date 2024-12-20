@@ -27,7 +27,8 @@ function RecipeList({isAuth}) {
   const {
     mealPlanMains = [],
     mealPlanSides = [],
-    handleCreateMealPlan
+    handleCreateMealPlan,
+    handleDeleteMeal
   } = useMealPlanner(filteredRecipes, combinedRecipes);
 
   const fetchCombinedRecipeData = useCallback(async () => {
@@ -98,6 +99,7 @@ function RecipeList({isAuth}) {
           mealPlanMains={mealPlanMains}
           mealPlanSides={mealPlanSides}
           onBtnClick={handleCreateMealPlan}
+          handleDeleteMeal={handleDeleteMeal}
         />
       </div>
       <div className='recipeListWrapper'>

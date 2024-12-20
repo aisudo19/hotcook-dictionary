@@ -42,9 +42,15 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
     setmealPlanSides(selectedSides);
   }
 
+  const handleDeleteMeal = (id) => {
+    setmealPlanMains(prevMains => prevMains.filter((recipe) => recipe.id !== id));
+    setmealPlanSides(prevSides => prevSides.filter((recipe) => recipe.id !== id));
+  }
+
   return {
     mealPlanMains,
     mealPlanSides,
-    handleCreateMealPlan
+    handleCreateMealPlan,
+    handleDeleteMeal
   };
 };
