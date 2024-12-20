@@ -1,20 +1,16 @@
 .popup {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: rgba(0, 0, 0, 0.8);
   padding: 15px;
   border-radius: 5px;
-  animation: slideIn 0.5s ease-out;
-  z-index: 1000;
 }
 
 p {
   margin: 0.35em;
+  color: black;
 }
 
 h3 {
   margin: 0.5em;
+  color: black;
 }
 
 .popup-content {

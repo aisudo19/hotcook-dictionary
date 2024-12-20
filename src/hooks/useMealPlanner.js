@@ -3,10 +3,8 @@ import { useState } from 'react';
 export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
   const [mealPlanMains, setmealPlanMains] = useState([]);
   const [mealPlanSides, setmealPlanSides] = useState([]);
-  const [showPopup, setShowPopup] = useState(false);
 
   const handleCreateMealPlan = () => {
-    setShowPopup(true);
     const recipes = filteredRecipes.length === 0 ? combinedRecipes : filteredRecipes;
 
     if(recipes.length === 0) return;
@@ -47,8 +45,6 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
   return {
     mealPlanMains,
     mealPlanSides,
-    showPopup,
-    setShowPopup,
     handleCreateMealPlan
   };
 };

@@ -1,8 +1,21 @@
-.recipeListWrapper {
-  background-color: pink;
+.ListWrapper {
+  display: flex;
+}
+
+.mealListWrapper {
+  background-color: #dfdfdf;
   margin-top: 0;
   min-height: 100vh;
   text-align: center;
+  width: 30%;
+}
+
+.recipeListWrapper {
+  background-color: #fff3b5;
+  margin-top: 0;
+  min-height: 100vh;
+  text-align: center;
+  width: 70%;
 }
 
 .recipeListWrapper h2 {

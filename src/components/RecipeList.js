@@ -27,8 +27,6 @@ function RecipeList({isAuth}) {
   const {
     mealPlanMains = [],
     mealPlanSides = [],
-    showPopup,
-    setShowPopup,
     handleCreateMealPlan
   } = useMealPlanner(filteredRecipes, combinedRecipes);
 
@@ -82,22 +80,28 @@ function RecipeList({isAuth}) {
 
   if(!isAuth) {
     return (
+      <div className='ListWrapper'>
+      <div className='mealListWrapper'>
+
+      </div>
       <div className='recipeListWrapper'>
         <h2>レシピ一覧</h2>
         <Link to='/login'><FontAwesomeIcon icon={faRightToBracket} />ログインしてレシピを見る</Link>
       </div>
+      </div>
     )
   } else {
     return (
-      <div className='recipeListWrapper'>
-        <h2>レシピ一覧</h2>
+      <div className='ListWrapper'>
+      <div className='mealListWrapper'>
         <CreateMealPlan
           mealPlanMains={mealPlanMains}
           mealPlanSides={mealPlanSides}
-          showPopup={showPopup}
-          setShowPopup={setShowPopup}
           onBtnClick={handleCreateMealPlan}
         />
+      </div>
+      <div className='recipeListWrapper'>
+        <h2>レシピ一覧</h2>
         <SearchFilter
           searchTerm={searchTerm}
           filters={filters}
@@ -114,6 +118,7 @@ function RecipeList({isAuth}) {
             ))}
           </ul>
         )}
+      </div>
       </div>
     )
   }
