@@ -1,7 +1,7 @@
 erDiagram
     users ||--o{ user_recipes : has
     recipes ||--o{ user_recipes : referenced_by
-    recipes ||--o{ recipe_ingredients : contains
+    recipes ||--o{ recipe_details : contains
 
     users {
         string uid PK
@@ -33,10 +33,11 @@ erDiagram
         timestamp updatedAt
     }
 
-    recipe_ingredients {
-        string id PK
-        string recipeId FK
-        string ingredientName
-        string amount
-        int order
+    ingredients {
+        string id PK FK
+        string cookingTime
+        string servings
+        string title
+        array ingredients
+        array instructions
     }

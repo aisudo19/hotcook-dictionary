@@ -3,6 +3,7 @@ import '../assets/css/Recipe.css';
 import { collection, setDoc, doc, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useAuth } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 
 function Recipe({combinedRecipe, onUpdate, handleAddMealList }) {
   const { user } = useAuth();
@@ -52,7 +53,9 @@ function Recipe({combinedRecipe, onUpdate, handleAddMealList }) {
   return (
     <li className={combinedRecipe.category === "main" ? "mainDish recipeContents":"sideDish recipeContents"}>
       <p>{combinedRecipe.title}</p>
-        <img src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${combinedRecipe.UID}.jpg`} alt={combinedRecipe.title} />
+        <Link to={`/recipe/${combinedRecipe.id}`}>
+        {combinedRecipe.id}
+        <img src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${combinedRecipe.UID}.jpg`} alt={combinedRecipe.title} /></Link>
         <p>{combinedRecipe.category === "main" ? "メイン":"サイド"}</p>
       <div className="btnContainer">
         <button onClick={() => {handleToggleCookedList(combinedRecipe.UID)}}
