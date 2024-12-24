@@ -54,7 +54,6 @@ function Recipe({combinedRecipe, onUpdate, handleAddMealList }) {
     <li className={combinedRecipe.category === "main" ? "mainDish recipeContents":"sideDish recipeContents"}>
       <p>{combinedRecipe.title}</p>
         <Link to={`/recipe/${combinedRecipe.id}`}>
-        {combinedRecipe.id}
         <img src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${combinedRecipe.UID}.jpg`} alt={combinedRecipe.title} /></Link>
         <p>{combinedRecipe.category === "main" ? "メイン":"サイド"}</p>
       <div className="btnContainer">

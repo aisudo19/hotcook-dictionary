@@ -20,7 +20,7 @@ function SearchFilter({ searchTerm, filters, onSearchChange, onFilterChange }) {
           checked={filters.hasCooked}
           onChange={onFilterChange}
         />
-        <label className='checkbox01' htmlFor='hasCooked'>作ったことある!</label>
+        <label className='checkbox01' htmlFor='hasCooked'>作った!</label>
 
         <input
           type='checkbox'
@@ -47,7 +47,7 @@ function SearchFilter({ searchTerm, filters, onSearchChange, onFilterChange }) {
           checked={filters.dontWant}
           onChange={onFilterChange}
         />
-          <label className='checkbox01' htmlFor='dontWant'>作りたくない</label>
+          <label className='checkbox01' htmlFor='dontWant'>作らない</label>
       </div>
     </div>
   );

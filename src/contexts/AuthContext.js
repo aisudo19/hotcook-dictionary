@@ -6,10 +6,16 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 const AuthContext = createContext({});
 
-export const useAuth = () => {return useContext(AuthContext)};
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+};
 
 export const AuthProvider = ({ children, setIsAuth }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(undefined);
   const [loading, setLoading] = useState(true);
 
   const loginWithGoogle = async () => {
@@ -68,8 +74,14 @@ export const AuthProvider = ({ children, setIsAuth }) => {
   const value = {
     user,
     loginWithGoogle,
-    logout
+    logout,
+    loading
   };
+
+  // loadingがtrueの間は子コンポーネントをレンダリングしない
+  if (loading) {
+    return null;
+  }
 
   return (
     <AuthContext.Provider value={value}>

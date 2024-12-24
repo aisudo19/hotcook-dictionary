@@ -1,0 +1,13 @@
+.mealMainWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.mealSideWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+..mealThumImg {
+  width: 160px;
+}

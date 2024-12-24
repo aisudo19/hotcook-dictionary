@@ -1,27 +1,28 @@
 import React from 'react'
-import '../assets/css/CreateMealPlan.css';
+import styles from '../assets/css/CreateMealPlan.css';
 
-function CreateMealPlan({mealPlanMains, mealPlanSides, onBtnClick, handleDeleteMeal}) {
+function CreateMealPlan({mealPlanMains, mealPlanSides, onCreateMeals, onShowMeals, handleDeleteMeal}) {
   return (
     <>
-      <div className='mealPlanWrapper'>
-        <button className="createMeals" onClick={onBtnClick}>献立を作成する</button>
-        {mealPlanMains && mealPlanSides &&
-          <div className="mealBoard">
+      <div className={styles.mealPlanWrapper}>
+        <button className={styles.createMeals} onClick={onCreateMeals}>献立を作成する</button>
+        <button className={styles.createMeals} onClick={onShowMeals}>献立を参照する</button>
+        {mealPlanMains?.length > 0 && mealPlanSides?.length > 0 &&
+          <div className={styles.mealBoard}>
             <h3>メイン</h3>
             {mealPlanMains.map((recipe) => (
-              <div key={recipe.id} className="mealMain">
-                <button className="deleteBtn" onClick={() => handleDeleteMeal(recipe.id)}>x</button>
+              <div key={recipe.id} className={styles.mealMain}>
+                <button className={styles.deleteBtn} onClick={() => handleDeleteMeal(recipe.id)}>x</button>
                 <p>{recipe.title}</p>
-                <img className="mealThumImg" src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${recipe.id}.jpg`} alt={recipe.title} />
+                <img className={styles.mealThumImg} src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${recipe.id}.jpg`} alt={recipe.title} />
               </div>
             ))}
             <h3>サイド</h3>
             {mealPlanSides.map((recipe) => (
-              <div key={recipe.id} className='mealSide'>
-                <button className="deleteBtn" onClick={() => handleDeleteMeal(recipe.id)}>x</button>
+              <div key={recipe.id} className={styles.mealSide}>
+                <button className={styles.deleteBtn} onClick={() => handleDeleteMeal(recipe.id)}>x</button>
                 <p>{recipe.title}</p>
-                <img className="mealThumImg" src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${recipe.id}.jpg`} alt={recipe.title} />
+                <img className={styles.mealThumImg} src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${recipe.id}.jpg`} alt={recipe.title} />
               </div>
             ))}
           </div>

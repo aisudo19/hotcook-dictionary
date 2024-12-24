@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
   const [mealPlanMains, setmealPlanMains] = useState([]);
   const [mealPlanSides, setmealPlanSides] = useState([]);
+  const navigate = useNavigate();
 
   const handleCreateMealPlan = () => {
     const recipes = filteredRecipes.length === 0 ? combinedRecipes : filteredRecipes;
@@ -47,6 +49,19 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
     setmealPlanSides(prevSides => prevSides.filter((recipe) => recipe.id !== id));
   }
 
+  const handleShowMealPlan = (id) => {
+    if(mealPlanMains.length === 0 && mealPlanSides.length === 0) return;
+    //mealPlanMainsとmealPlanSidesを渡してMealPlanコンポーネントを表示
+    navigate('/mealplan',
+      {
+        state: {
+          mealPlanMains,
+          mealPlanSides
+        }
+      }
+    );
+  }
+
   const handleAddMealList = (id) => {
     const recipe = combinedRecipes.find((recipe) => recipe.id === id);
     if(!recipe) return;
@@ -63,6 +78,7 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
     mealPlanMains,
     mealPlanSides,
     handleCreateMealPlan,
+    handleShowMealPlan,
     handleDeleteMeal,
     handleAddMealList
   };
