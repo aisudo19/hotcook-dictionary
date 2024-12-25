@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../assets/css/CreateMealPlan.css';
+import styles from '../assets/css/CreateMealPlan.module.css';
 
 function CreateMealPlan({mealPlanMains, mealPlanSides, onCreateMeals, onShowMeals, handleDeleteMeal}) {
   return (

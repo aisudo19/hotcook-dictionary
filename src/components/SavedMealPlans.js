@@ -1,7 +1,7 @@
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { db } from '../firebase';
-import styles from '../assets/css/SavedMealPlans.css';
+import styles from '../assets/css/SavedMealPlans.module.css';
 
 function SavedMealPlans() {
   const [mealPlanMains, setMealPlanMains] = useState([]);
@@ -47,25 +47,28 @@ function SavedMealPlans() {
 
   return (
     <div>
+      <h2>保存した献立</h2>
       {mealPlanMains.map((mealPlan, index) => (
         <div key={index}>
           <div>
             <div key={index}>
-              <h4>{mealPlan.title}</h4>
+              <h4>{index + 1}. {mealPlan.title}</h4>
               <div className={styles.flex}>
-                <img src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${mealPlan.id}.jpg`} alt={mealPlan.title} />
-                {mealPlan.ingredients.map((ingredient, index) => (
-                <div key={index}>
-                  <span>{ingredient.name}: {ingredient.amount}</span>
+                <img className={styles.mealThumImg} src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${mealPlan.id}.jpg`} alt={mealPlan.title} />
+                <div className= {styles.ingredients}>
+                  {mealPlan.ingredients.map((ingredient, index) => (
+                    <div key={index}>
+                      <span>{ingredient.name}: {ingredient.amount}</span>
+                    </div>
+                  ))}
                 </div>
-                ))}
-              </div>
-              {mealPlan.instructions.map((instruction, index) => (
-                <div key={index} className='instructions'>
-                  <div>{index+1}. {instruction}</div>
+                <div key={index} className={styles.instructions}>
+                  {mealPlan.instructions.map((instruction, index) => (
+                    <div>{index+1}. {instruction}</div>
+                  ))}
                 </div>
-              ))}
               </div>
+            </div>
           </div>
         </div>
       ))}

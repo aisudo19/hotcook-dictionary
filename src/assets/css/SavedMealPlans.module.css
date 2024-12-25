@@ -1,0 +1,12 @@
+.flex {
+  display: flex;
+}
+
+.mealThumImg {
+  width: 33%;
+}
+
+.ingredients,
+.instructions {
+  width: 33%;
+}

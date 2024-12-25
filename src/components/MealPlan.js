@@ -1,4 +1,4 @@
-import { addDoc, collection } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { db } from '../firebase';
@@ -33,15 +33,32 @@ function MealPlan() {
 
     try {
       setIsSaving(true);
+
+      const now = new Date();
+      const timestamp = now.getFullYear().toString() +
+        (now.getMonth() + 1).toString().padStart(2, '0') +
+        now.getDate().toString().padStart(2, '0') + '_' +
+        now.getHours().toString().padStart(2, '0') +
+        now.getMinutes().toString().padStart(2, '0') +
+        now.getSeconds().toString().padStart(2, '0');
+
+      const docId = `${user.uid}_${timestamp}`;
+
       const mealPlanData = {
-        mains: mealPlanMains.map(recipe => recipe.id),
-        sides: mealPlanSides.map(recipe => recipe.id),
+        mains: mealPlanMains.map(recipe => ({
+          id: recipe.id,
+          title: recipe.title
+        })),
+        sides: mealPlanSides.map(recipe => ({
+          id: recipe.id,
+          title: recipe.title
+        })),
         createdAt: new Date(),
         userId: user.uid
       }
-      const docRef = await addDoc(collection(db, 'meal_plans'), mealPlanData);
+      await setDoc(doc(db, 'meal_plans', docId), mealPlanData);
       alert('献立を保存しました。');
-      navigate('/saved-meal-plans');
+      navigate('/meal-plan-lists');
 
     } catch (error) {
       console.error('Error saving meal plan:', error);

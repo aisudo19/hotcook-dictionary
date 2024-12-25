@@ -1,0 +1,22 @@
+.mealBoard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.mealItem {
+  flex: 0 0 calc((100% - (10px * 7)) / 8);
+  min-width: 140px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.mealThumImg {
+  width: 100%;
+}
+
+.left {
+  text-align: left;
+}
