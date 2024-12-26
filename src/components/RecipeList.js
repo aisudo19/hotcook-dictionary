@@ -35,13 +35,11 @@ function RecipeList({isAuth}) {
 
   const fetchCombinedRecipeData = useCallback(async () => {
     try {
-      // 1. レシピの基本情報を取得
       const recipesSnapshot = await getDocs(collection(db, 'recipes'));
       const recipesData = recipesSnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
       }));
-      // 2. ユーザーに紐づくレシピ情報を取得
       let userRecipesData = {};
       if (user) {
         const userRecipesQuery = query(
@@ -58,7 +56,6 @@ function RecipeList({isAuth}) {
         });
       }
 
-      // 3. データを結合
       const combined = recipesData.map(recipe => ({
         ...recipe,
         userRecipe: userRecipesData[recipe.id] || {

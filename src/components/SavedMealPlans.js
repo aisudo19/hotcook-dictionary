@@ -46,7 +46,6 @@ function SavedMealPlans() {
         })
       );
 
-      // nullを除外
       setMealPlanMainDetails(mealPlanMains.filter(recipe => recipe !== null));
 
       if (mealPlan.sides && Array.isArray(mealPlan.sides)) {
@@ -71,7 +70,7 @@ function SavedMealPlans() {
 
   useEffect(() => {
     fetchMealPlansFromId();
-  }, [id]); // idを依存配列に追加
+  }, [id]);
 
   if (loading) {
     return <div>読み込み中...</div>;
@@ -86,7 +85,7 @@ function SavedMealPlans() {
       <h2>献立詳細</h2>
       {mealPlanMainDetails.length > 0 ? (
         mealPlanMainDetails.map((recipe, index) => (
-          recipe && ( // recipeの存在確認
+          recipe && (
             <div key={index}>
               <div>
                 <div>
@@ -98,7 +97,7 @@ function SavedMealPlans() {
                       alt={recipe.title}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = 'デフォルト画像のURL'; // デフォルト画像のURLを設定
+                        e.target.src = 'デフォルト画像のURL';
                       }}
                     />
                     <div className={styles.ingredients}>
@@ -125,7 +124,7 @@ function SavedMealPlans() {
 
       {mealPlanSideDetails.length > 0 ? (
         mealPlanSideDetails.map((recipe, index) => (
-          recipe && ( // recipeの存在確認
+          recipe && (
             <div key={index}>
               <div>
                 <div>
@@ -137,7 +136,7 @@ function SavedMealPlans() {
                       alt={recipe.title}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = 'デフォルト画像のURL'; // デフォルト画像のURLを設定
+                        e.target.src = 'デフォルト画像のURL';
                       }}
                     />
                     <div className={styles.ingredients}>

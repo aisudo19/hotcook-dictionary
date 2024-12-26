@@ -18,7 +18,6 @@ function GetCookedRecipes() {
           where('hasCooked', '==', true)
         );
         const recipesSnapshot = await getDocs(recipesQuery);
-        console.log("recipesSnapshot: ", recipesSnapshot.docs.map((doc => doc.data())));
 
         setRecipes(recipesSnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -33,7 +32,6 @@ function GetCookedRecipes() {
     };
     fetchCookedRecipes();
   }, []);
-  console.log("recipes: ", recipes);
   return (
     <div className='cooked-recipes__recipeListWrapper'>
       <h2>作ったことある！レシピ一覧</h2>

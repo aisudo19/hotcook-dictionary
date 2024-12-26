@@ -9,7 +9,7 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
   const [mealPlanSides, setmealPlanSides] = useState([]);
   const navigate = useNavigate();
   const { user, loading } = useAuth();
-  const [isSaving, setIsSaving] = useState(false); // 保存中の状態管理
+  const [isSaving, setIsSaving] = useState(false);
 
   const handleCreateMealPlan = () => {
     const recipes = filteredRecipes.length === 0 ? combinedRecipes : filteredRecipes;
@@ -34,7 +34,6 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
     const selectedMainIds = shuffledMainIds.slice(0, Math.min(7, shuffledMainIds.length));
 
     const selectedSideIds = shuffledSideIds.slice(0, Math.min(7, shuffledSideIds.length));
-    console.log("selectedMainIds: ",selectedMainIds, selectedSideIds);
 
     const selectedMains = recipes.filter((recipe) =>
       selectedMainIds.includes(recipe.id)).map((recipe) => (

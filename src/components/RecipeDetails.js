@@ -14,7 +14,6 @@ function RecipeDetails() {
       const recipeRef = doc(db, 'recipe_details', id);
       const recipeSnapshot = await getDoc(recipeRef);
       const data = recipeSnapshot.data();
-      console.log(data);
       if(data) {
         setRecipeData(data);
       }

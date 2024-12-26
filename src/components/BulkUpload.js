@@ -99,8 +99,6 @@ const BulkUpload = () => {
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
-    console.log("correctPassword",correctPassword)
-    console.log("password",password)
     if(password === correctPassword) {
       setIsAuthenticated(true);
     } else {

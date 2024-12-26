@@ -36,7 +36,6 @@ export const AuthProvider = ({ children, setIsAuth }) => {
     const userSnap = await getDoc(userRef);
 
     if (!userSnap.exists()) {
-      //ユーザが存在しない場合はFirestoreに保存
       try{
         await setDoc(userRef, {
           uid: user.uid,
@@ -50,7 +49,6 @@ export const AuthProvider = ({ children, setIsAuth }) => {
         console.error('ユーザ情報の保存に失敗しました:', error);
       }
     } else {
-      //ユーザが存在する場合は最終ログイン日時を更新
       await setDoc(userRef, {
         lastLogin: new Date()
       }, { merge: true });
@@ -61,7 +59,6 @@ export const AuthProvider = ({ children, setIsAuth }) => {
     return signOut(auth);
   }
 
-  //認証状態の変更を監視
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -78,7 +75,6 @@ export const AuthProvider = ({ children, setIsAuth }) => {
     loading
   };
 
-  // loadingがtrueの間は子コンポーネントをレンダリングしない
   if (loading) {
     return null;
   }
