@@ -9,7 +9,6 @@ import Logout from './components/Logout';
 import { AuthProvider } from './contexts/AuthContext';
 import Profile from './components/Profile';
 import RecipeDetails from './components/RecipeDetails';
-import MealPlan from './components/MealPlan';
 import SavedMealPlans from './components/SavedMealPlans';
 import SavedMealPlanLists from './components/SavedMealPlanLists';
 
@@ -24,9 +23,8 @@ function App() {
           <Route path="/" element={<RecipeList isAuth={isAuth}/>}></Route>
           <Route path="/recipe/" element={<RecipeList isAuth={isAuth}/>}></Route>
           <Route path="/recipe/:id" element={<RecipeDetails />} />
-          <Route path="/mealplan" element={<MealPlan />} />
-          <Route path="/saved-meal-plans" element={<SavedMealPlans />} />
-          <Route path="/meal-plan-lists" element={<SavedMealPlanLists />} />
+          <Route path="/saved-meal-plans/:id" element={<SavedMealPlans />} />
+          <Route path="/saved-meal-plan-lists" element={<SavedMealPlanLists />} />
           <Route path="/login" element={<Login setIsAuth={setIsAuth}/>} />
           <Route path="/logout" element={<Logout setIsAuth={setIsAuth}/>} />
           <Route path="/profile" element={<Profile />} />

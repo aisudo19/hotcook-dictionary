@@ -28,7 +28,7 @@ function RecipeList({isAuth}) {
     mealPlanMains = [],
     mealPlanSides = [],
     handleCreateMealPlan,
-    handleShowMealPlan,
+    handleSaveMealPlan,
     handleDeleteMeal,
     handleAddMealList
   } = useMealPlanner(filteredRecipes, combinedRecipes);
@@ -101,7 +101,7 @@ function RecipeList({isAuth}) {
           mealPlanMains={mealPlanMains}
           mealPlanSides={mealPlanSides}
           onCreateMeals={handleCreateMealPlan}
-          onShowMeals={handleShowMealPlan}
+          onSaveMeals={handleSaveMealPlan}
           handleDeleteMeal={handleDeleteMeal}
         />
       </div>

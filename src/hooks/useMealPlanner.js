@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
   const [mealPlanMains, setmealPlanMains] = useState([]);
   const [mealPlanSides, setmealPlanSides] = useState([]);
   const navigate = useNavigate();
+  const { user, loading } = useAuth();
+  const [isSaving, setIsSaving] = useState(false); // 保存中の状態管理
 
   const handleCreateMealPlan = () => {
     const recipes = filteredRecipes.length === 0 ? combinedRecipes : filteredRecipes;
@@ -49,17 +54,50 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
     setmealPlanSides(prevSides => prevSides.filter((recipe) => recipe.id !== id));
   }
 
-  const handleShowMealPlan = (id) => {
+  const handleSaveMealPlan = async(id) => {
+    if (!loading && !user) {
+      alert('献立を保存するにはログインが必要です');
+      navigate('/login');
+      return;
+    }
+
     if(mealPlanMains.length === 0 && mealPlanSides.length === 0) return;
-    //mealPlanMainsとmealPlanSidesを渡してMealPlanコンポーネントを表示
-    navigate('/mealplan',
-      {
-        state: {
-          mealPlanMains,
-          mealPlanSides
-        }
+
+    try {
+      setIsSaving(true);
+
+      const now = new Date();
+      const timestamp = now.getFullYear().toString() +
+        (now.getMonth() + 1).toString().padStart(2, '0') +
+        now.getDate().toString().padStart(2, '0') + '_' +
+        now.getHours().toString().padStart(2, '0') +
+        now.getMinutes().toString().padStart(2, '0') +
+        now.getSeconds().toString().padStart(2, '0');
+
+      const docId = `${user.uid}_${timestamp}`;
+
+      const mealPlanData = {
+        mains: mealPlanMains.map(recipe => ({
+          id: recipe.id,
+          title: recipe.title
+        })),
+        sides: mealPlanSides.map(recipe => ({
+          id: recipe.id,
+          title: recipe.title
+        })),
+        createdAt: new Date(),
+        userId: user.uid
       }
-    );
+      await setDoc(doc(db, 'meal_plans', docId), mealPlanData);
+      alert('献立を保存しました。');
+      navigate('/saved-meal-plan-lists');
+
+    } catch (error) {
+      console.error('Error saving meal plan:', error);
+    } finally {
+      setIsSaving(false);
+    }
+
   }
 
   const handleAddMealList = (id) => {
@@ -78,7 +116,7 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
     mealPlanMains,
     mealPlanSides,
     handleCreateMealPlan,
-    handleShowMealPlan,
+    handleSaveMealPlan,
     handleDeleteMeal,
     handleAddMealList
   };

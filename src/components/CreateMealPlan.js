@@ -1,12 +1,12 @@
 import React from 'react'
 import styles from '../assets/css/CreateMealPlan.module.css';
 
-function CreateMealPlan({mealPlanMains, mealPlanSides, onCreateMeals, onShowMeals, handleDeleteMeal}) {
+function CreateMealPlan({mealPlanMains, mealPlanSides, onCreateMeals, onSaveMeals, handleDeleteMeal}) {
   return (
     <>
       <div className={styles.mealPlanWrapper}>
         <button className={styles.createMeals} onClick={onCreateMeals}>献立を作成する</button>
-        <button className={styles.createMeals} onClick={onShowMeals}>献立を参照する</button>
+        <button className={styles.createMeals} onClick={onSaveMeals}>献立を保存する</button>
         {mealPlanMains?.length > 0 && mealPlanSides?.length > 0 &&
           <div className={styles.mealBoard}>
             <h3>メイン</h3>
