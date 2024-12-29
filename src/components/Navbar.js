@@ -11,7 +11,6 @@ function Navbar({isAuth}) {
     <nav>
       <Link to='/'><FontAwesomeIcon icon={faHome} />ホーム</Link>
       <Link to='/saved-meal-plan-lists'><FontAwesomeIcon icon={faUtensils} />献立一覧</Link>
-      <Link to='/saved-meal-plan-lists'><FontAwesomeIcon icon={faUtensils} />献立一覧</Link>
       {!isAuth && <Link to='/login'><FontAwesomeIcon icon={faRightToBracket} />ログイン</Link>}
       {isAuth && <Link to='/logout'><FontAwesomeIcon icon={faRightFromBracket} />ログアウト</Link>}
       <Link to='/bulk_upload'><FontAwesomeIcon icon={faUpload} />データ一括Upload</Link>
