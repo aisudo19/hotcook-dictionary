@@ -12,6 +12,7 @@ import RecipeDetails from './components/RecipeDetails';
 import SavedMealPlans from './components/SavedMealPlans';
 import SavedMealPlanLists from './components/SavedMealPlanLists';
 import AddRecipe from './components/AddRecipe';
+import FoodList from './components/FoodList';
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
@@ -27,6 +28,7 @@ function App() {
           <Route path="/saved-meal-plans/:id" element={<SavedMealPlans />} />
           <Route path="/saved-meal-plan-lists" element={<SavedMealPlanLists />} />
           <Route path="/new_recipe" element={<AddRecipe />} />
+          <Route path="/food-list" element={<FoodList />} />
           <Route path="/login" element={<Login setIsAuth={setIsAuth}/>} />
           <Route path="/logout" element={<Logout setIsAuth={setIsAuth}/>} />
           <Route path="/profile" element={<Profile />} />

@@ -2,7 +2,7 @@ import { doc, getDoc } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { db } from '../firebase';
 import styles from '../assets/css/SavedMealPlans.module.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function SavedMealPlans() {
   const { id } = useParams();
@@ -10,6 +10,7 @@ function SavedMealPlans() {
   const [ mealPlanSideDetails, setMealPlanSideDetails ] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const fetchMealPlansFromId = async () => {
     if (!id) {
@@ -80,9 +81,37 @@ function SavedMealPlans() {
     return <div>{error}</div>;
   }
 
+  const handleOutputFoodList = () => {
+    const foodList = [
+      ...mealPlanMainDetails.reduce((acc, recipe) => {
+        recipe.ingredients.forEach(ingredient => {
+          if (!acc.has(ingredient.name)) {
+            acc.set(ingredient.name, '');
+          }
+          acc.set(ingredient.name, acc.get(ingredient.name) + ingredient.amount);
+        });
+        return acc;
+      }, new Map()),
+      ...mealPlanSideDetails.reduce((acc, recipe) => {
+        recipe.ingredients.forEach(ingredient => {
+          if (!acc.has(ingredient.name)) {
+            acc.set(ingredient.name, '');
+          }
+          acc.set(ingredient.name, acc.get(ingredient.name) + ingredient.amount);
+        });
+        return acc;
+      }, new Map())
+    ];
+
+    const foodListString = Array.from(foodList).map(([name, amount]) => `${name}: ${amount}`).join('\n');
+    console.log(foodListString);
+    navigate('/food-list', { state: { foodListString } });
+  }
+
   return (
     <div>
       <h2>献立詳細</h2>
+      <button onClick={handleOutputFoodList}>食材リストの出力</button>
       {mealPlanMainDetails.length > 0 ? (
         mealPlanMainDetails.map((recipe, index) => (
           recipe && (
