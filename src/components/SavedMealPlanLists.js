@@ -53,7 +53,7 @@ function SavedMealPlanLists() {
     <div className={styles.mealPlanLists}>
       <h2>献立一覧</h2>
       {mealPlans.map((mealPlan, index) => (
-        <React.Fragment key={mealPlan.createdAt.toDate().getTime()}>
+        <div key={mealPlan.id}>
           <h4 className={styles.left}>{index + 1}. {mealPlan.createdAt.toDate().toLocaleString()}に保存した献立</h4>
           <button className={styles.deleteBtn} onClick={() => {
             handleDeleteMealPlan(mealPlan.id);
@@ -62,7 +62,7 @@ function SavedMealPlanLists() {
           <button className={styles.showMealPlan}>献立を見る</button>
           </Link>
           <h4>主菜</h4>
-          <div key={index} className={styles.mealBoard}>
+          <div className={styles.mealBoard}>
             {mealPlan.mains.map((main, i) => (
               <div key={i} className={styles.mealItem}>
                 <p>{main.title}</p>
@@ -71,7 +71,7 @@ function SavedMealPlanLists() {
             ))}
             </div>
             <h4>副菜</h4>
-            <div key={index} className={styles.mealBoard}>
+            <div className={styles.mealBoard}>
             {mealPlan.sides.map((side, i) => (
               <div key={i} className={styles.mealItem}>
                 <p>{side.title}</p>
@@ -79,7 +79,7 @@ function SavedMealPlanLists() {
               </div>
             ))}
           </div>
-        </React.Fragment>
+        </div>
       ))}
     </div>
   )
