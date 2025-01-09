@@ -20,7 +20,7 @@ function App() {
   return (
     <AuthProvider setIsAuth={setIsAuth}>
       <Router>
-        <Navbar isAuth={isAuth}/>
+        <Navbar/>
         <Routes>
           <Route path="/" element={<RecipeList isAuth={isAuth}/>}></Route>
           <Route path="/recipe/" element={<RecipeList isAuth={isAuth}/>}></Route>

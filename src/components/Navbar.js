@@ -5,17 +5,22 @@ import { faHome, faRightToBracket,faRightFromBracket, faUpload, faUser, faUtensi
 import '../assets/css/Navbar.css';
 import { useAuth } from '../contexts/AuthContext';
 
-function Navbar({isAuth}) {
+function Navbar() {
   const { user } = useAuth();
   return (
     <nav>
       <Link to='/'><FontAwesomeIcon icon={faHome} />ホーム</Link>
       <Link to='/saved-meal-plan-lists'><FontAwesomeIcon icon={faUtensils} />献立一覧</Link>
-      {!isAuth && <Link to='/login'><FontAwesomeIcon icon={faRightToBracket} />ログイン</Link>}
-      {isAuth && <Link to='/logout'><FontAwesomeIcon icon={faRightFromBracket} />ログアウト</Link>}
-      <Link to='/bulk_upload'><FontAwesomeIcon icon={faUpload} />データ一括Upload</Link>
-      {isAuth && <Link to='/profile'><FontAwesomeIcon icon={faUser} />{user.displayName}</Link>}
-      <Link to='/new_recipe'>新しいレシピを追加</Link>
+      {user ? (
+        <div>
+          <Link to='/logout'><FontAwesomeIcon icon={faRightFromBracket} />ログアウト</Link>
+          <Link to='/bulk_upload'><FontAwesomeIcon icon={faUpload} />データ一括Upload</Link>
+          <Link to='/new_recipe'>新しいレシピを追加</Link>
+          <Link to='/profile'><FontAwesomeIcon icon={faUser} />{user.displayName}</Link>
+        </div>
+      ) : (
+        <Link to='/login'><FontAwesomeIcon icon={faRightToBracket} />ログイン</Link>
+      )}
     </nav>
   )
 }
