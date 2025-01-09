@@ -55,8 +55,14 @@ export const AuthProvider = ({ children, setIsAuth }) => {
     }
   }
 
-  const logout = () => {
-    return signOut(auth);
+  const logout = async() => {
+    try {
+      await signOut(auth);
+      localStorage.removeItem('isAuth');
+      setIsAuth(false);
+    } catch (error) {
+      console.error('ログアウトエラー:', error);
+    }
   }
 
   useEffect(() => {
