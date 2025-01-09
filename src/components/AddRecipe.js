@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { db } from '../firebase';
-import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc } from 'firebase/firestore';
 import styles from '../assets/css/AddRecipe.module.css';
 
 function AddRecipe() {
@@ -11,7 +11,9 @@ function AddRecipe() {
     ingredients: [{ name: '', amount: '' }],
     instructions: [''],
     category: 'main', // デフォルト値
-    supported_device: ''
+    supported_device: '',
+    updated_at: new Date(),
+    created_at: new Date()
   });
 
   const handleChange = (e) => {
@@ -82,7 +84,9 @@ function AddRecipe() {
         title: recipe.title,
         category: recipe.category,
         cooking_time: recipe.cooking_time,
-        supported_device: recipe.supported_device
+        supported_device: recipe.supported_device,
+        updated_at: recipe.updated_at,
+        created_at: recipe.created_at
       });
 
       // recipe_detailsコレクションに詳細情報を保存
@@ -94,7 +98,9 @@ function AddRecipe() {
         ingredients: filteredIngredients,
         instructions: filteredInstructions,
         category: recipe.category,
-        supported_device: recipe.supported_device
+        supported_device: recipe.supported_device,
+        updated_at: recipe.updated_at,
+        created_at: recipe.created_at
       });
 
       alert('レシピが保存されました！');
@@ -106,7 +112,9 @@ function AddRecipe() {
         ingredients: [{ name: '', amount: '' }],
         instructions: [''],
         category: 'main',
-        supported_device: ''
+        supported_device: '',
+        updated_at: new Date(),
+        created_at: new Date(),
       });
     } catch (error) {
       console.error('Error adding recipe:', error);
