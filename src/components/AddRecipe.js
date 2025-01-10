@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { db } from '../firebase';
 import { setDoc, doc } from 'firebase/firestore';
 import styles from '../assets/css/AddRecipe.module.css';
+import { useAuth } from '../contexts/AuthContext';
 
 function AddRecipe() {
+  const { user } = useAuth();
   const [recipe, setRecipe] = useState({
     title: '',
     servings: '',
@@ -57,69 +59,91 @@ function AddRecipe() {
     });
   };
 
+  const createRecipeData = (recipe, customId) => {
+    const baseData = {
+      title: recipe.title,
+      category: recipe.category,
+      cooking_time: recipe.cooking_time,
+      supported_device: recipe.supported_device,
+      updated_at: recipe.updated_at,
+      created_at: recipe.created_at,
+      userId: user.uid
+    };
+
+    return {
+      base: {
+        ...baseData,
+        UID: customId,
+      },
+      details: {
+        ...baseData,
+        id: customId,
+        servings: recipe.servings,
+        ingredients: recipe.ingredients.filter(
+          ingredient => ingredient.name.trim() !== '' && ingredient.amount.trim() !== ''
+        ),
+        instructions: recipe.instructions.filter(
+          instruction => instruction.trim() !== ''
+      ),
+      }
+    };
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const filteredIngredients = recipe.ingredients.filter(
-        ingredient => ingredient.name.trim() !== '' && ingredient.amount.trim() !== ''
-      );
-
-      const filteredInstructions = recipe.instructions.filter(
-        instruction => instruction.trim() !== ''
-      );
-      if (filteredIngredients.length === 0) {
-        alert('少なくとも1つの材料を入力してください');
+      if (!validateRecipe(recipe)) {
         return;
       }
+      const customId = window.crypto.randomUUID();
+      const recipeData = createRecipeData(recipe, customId);
 
-      if (filteredInstructions.length === 0) {
-        alert('少なくとも1つの手順を入力してください');
-        return;
-      }
-      const customId = window.crypto.randomUUID(); // ユニークなIDを生成
-
-      // recipesコレクションに基本情報を保存
-      await setDoc(doc(db, 'recipes', customId), {
-        UID: customId,
-        title: recipe.title,
-        category: recipe.category,
-        cooking_time: recipe.cooking_time,
-        supported_device: recipe.supported_device,
-        updated_at: recipe.updated_at,
-        created_at: recipe.created_at
-      });
-
-      // recipe_detailsコレクションに詳細情報を保存
-      await setDoc(doc(db, 'recipe_details', customId), {
-        id: customId,
-        title: recipe.title,
-        servings: recipe.servings,
-        cooking_time: recipe.cooking_time,
-        ingredients: filteredIngredients,
-        instructions: filteredInstructions,
-        category: recipe.category,
-        supported_device: recipe.supported_device,
-        updated_at: recipe.updated_at,
-        created_at: recipe.created_at
-      });
+      await Promise.all([
+        setDoc(doc(db, 'recipes', customId), recipeData.base),
+        setDoc(doc(db, 'recipe_details', customId), recipeData.details)
+      ]);
 
       alert('レシピが保存されました！');
-      // フォームをリセット
-      setRecipe({
-        title: '',
-        servings: '',
-        cooking_time: '',
-        ingredients: [{ name: '', amount: '' }],
-        instructions: [''],
-        category: 'main',
-        supported_device: '',
-        updated_at: new Date(),
-        created_at: new Date(),
-      });
+      resetForm();
     } catch (error) {
       console.error('Error adding recipe:', error);
       alert('レシピの保存中にエラーが発生しました');
     }
+  };
+
+  const validateRecipe = (recipe) => {
+    const filteredIngredients = recipe.ingredients.filter(
+      ingredient => ingredient.name.trim() !== '' && ingredient.amount.trim() !== ''
+    );
+    const filteredInstructions = recipe.instructions.filter(
+      instruction => instruction.trim() !== ''
+    );
+
+    if (filteredIngredients.length === 0) {
+      alert('少なくとも1つの材料を入力してください');
+      return false;
+    }
+
+    if (filteredInstructions.length === 0) {
+      alert('少なくとも1つの手順を入力してください');
+      return false;
+    }
+
+    return true;
+  };
+
+  const resetForm = () => {
+    setRecipe({
+      title: '',
+      servings: '',
+      cooking_time: '',
+      ingredients: [{ name: '', amount: '' }],
+      instructions: [''],
+      category: 'main',
+      supported_device: '',
+      updated_at: new Date(),
+      created_at: new Date(),
+    });
   };
 
   return (

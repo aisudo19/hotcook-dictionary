@@ -6,7 +6,7 @@ import { useRecipeFilter } from '../hooks/useRecipeFilter';
 import { useMealPlanner } from '../hooks/useMealPlanner';
 import '../assets/css/RecipeList.css';
 import { db } from '../firebase';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, or, query, where } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,6 @@ import { useAuth } from '../contexts/AuthContext';
 function RecipeList({isAuth}) {
   const [combinedRecipes, setCombinedRecipes] = useState([]);
   const { user } = useAuth();
-
   const {
     filteredRecipes = [],
     searchTerm,
@@ -35,13 +34,21 @@ function RecipeList({isAuth}) {
 
   const fetchCombinedRecipeData = useCallback(async () => {
     try {
-      const recipesSnapshot = await getDocs(collection(db, 'recipes'));
-      const recipesData = recipesSnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
       let userRecipesData = {};
       if (user) {
+        const recipeQuery = query(
+          collection(db, 'recipes'),
+          or(
+            where('userId', '==', user.uid),
+            where('userId', '==', 'master')
+          )
+        )
+        const recipesSnapshot = await getDocs(recipeQuery);
+        const recipesData = recipesSnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+
         const userRecipesQuery = query(
           collection(db, 'user_recipes'),
           where('userId', '==', user.uid)
@@ -54,18 +61,18 @@ function RecipeList({isAuth}) {
             ...data
           };
         });
-      }
 
-      const combined = recipesData.map(recipe => ({
-        ...recipe,
-        userRecipe: userRecipesData[recipe.id] || {
-          hasCooked: false,
-          wantToCook: false,
-          cookCount: 0,
-          lastCookedAt: null
-        }
-      }));
-      setCombinedRecipes(combined);
+        const combined = recipesData.map(recipe => ({
+          ...recipe,
+          userRecipe: userRecipesData[recipe.id] || {
+            hasCooked: false,
+            wantToCook: false,
+            cookCount: 0,
+            lastCookedAt: null
+          }
+        }));
+        setCombinedRecipes(combined);
+      }
     } catch (error) {
       console.error('データの取得に失敗しました:', error);
     }
