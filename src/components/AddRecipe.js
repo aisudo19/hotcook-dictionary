@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { db } from '../firebase';
 import { setDoc, doc } from 'firebase/firestore';
 import styles from '../assets/css/AddRecipe.module.css';
 import { useAuth } from '../contexts/AuthContext';
+import { Button } from "@mui/material";
+import ImageLogo from "../assets/image/image.svg";
 
 function AddRecipe() {
   const { user } = useAuth();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState(null);
   const [recipe, setRecipe] = useState({
     title: '',
     servings: '',
@@ -95,6 +100,12 @@ function AddRecipe() {
       if (!validateRecipe(recipe)) {
         return;
       }
+
+      if(!onFileUpload()) {
+        alert("画像のアップロードに失敗しました");
+        return;
+      }
+
       const customId = window.crypto.randomUUID();
       const recipeData = createRecipeData(recipe, customId);
 
@@ -146,6 +157,71 @@ function AddRecipe() {
     });
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+
+    // プレビュー表示用
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDrop = useCallback((event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const file = event.dataTransfer.files[0];
+    if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
+      setSelectedFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  }, []);
+
+  const handleDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  }, []);
+
+  const onFileUpload = async() => {
+    if(!selectedFile) {
+      alert("ファイルを選択してください");
+      return false;
+    }
+
+    setLoading(true);
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+
+    try {
+      const response = await fetch(process.env.REACT_APP_REMOTESERVER_URL, {
+        method: "POST",
+        body: formData
+      });
+      const result = await response.json();
+      if(result.success) {
+        alert("アップロードに成功しました");
+        setPreview(null);
+        setSelectedFile(null);
+      } else {
+        return false;
+      }
+    } catch (e) {
+      return false;
+    } finally {
+      setLoading(false);
+    }
+    return true;
+  }
+
   return (
     <div className={styles.container}>
       <h2>新しいレシピを追加</h2>
@@ -155,11 +231,52 @@ function AddRecipe() {
           <input
             type="text"
             name="title"
+            placeholder='料理名'
             value={recipe.title}
             onChange={handleChange}
             required
           />
         </div>
+        <div className={styles.outerBox}>
+        <div className={styles.title}>
+          <p>JpegかPngの画像ファイル</p>
+        </div>
+        <div
+          className={styles.imageUplodeBox}
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+        >
+          {preview ? (
+            <div className={styles.previewContainer}>
+              <img src={preview} alt="プレビュー" className={styles.previewImage} />
+            </div>
+          ) : (
+            <div className={styles.imageLogoAndText}>
+              <img src={ImageLogo} alt="imagelogo" />
+              <p>ここに画像をドラッグ＆ドロップしてください</p>
+            </div>
+          )}
+          <input
+            className={styles.imageUploadInput}
+            type="file"
+            onChange={handleFileChange}
+            accept=".png,.jpeg,.jpg"
+          />
+        </div>
+        <Button
+          variant="contained"
+          component="label"
+          style={{ marginLeft: '10px', marginTop: '15px' }}
+        >
+          ファイルを選択
+          <input
+            type="file"
+            hidden
+            onChange={handleFileChange}
+            accept=".png,.jpeg,.jpg"
+          />
+        </Button>
+      </div>
 
         <div className={styles.formGroup}>
           <label>カテゴリー:</label>
@@ -179,6 +296,7 @@ function AddRecipe() {
           <input
             type="number"
             name="cooking_time"
+            placeholder='調理時間'
             value={recipe.cooking_time}
             onChange={handleChange}
             required
@@ -190,6 +308,7 @@ function AddRecipe() {
           <input
             type="text"
             name="servings"
+            placeholder='何人分'
             value={recipe.servings}
             onChange={handleChange}
             required
