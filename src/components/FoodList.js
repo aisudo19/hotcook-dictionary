@@ -6,7 +6,7 @@ function FoodList() {
   const location = useLocation();
   const { foodListString } = location.state || { foodListString: '' };
   const formattedText = foodListString.split('\n').map((line, index) => (
-    <li key={index}>{line}</li>
+    <li className={styles.list} key={index}>{line}</li>
   ));
 
   return (

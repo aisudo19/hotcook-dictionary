@@ -9,7 +9,6 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
   const [mealPlanSides, setmealPlanSides] = useState([]);
   const navigate = useNavigate();
   const { user, loading } = useAuth();
-  const [isSaving, setIsSaving] = useState(false);
 
   const handleCreateMealPlan = () => {
     const recipes = filteredRecipes.length === 0 ? combinedRecipes : filteredRecipes;
@@ -63,8 +62,6 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
     if(mealPlanMains.length === 0 && mealPlanSides.length === 0) return;
 
     try {
-      setIsSaving(true);
-
       const now = new Date();
       const timestamp = now.getFullYear().toString() +
         (now.getMonth() + 1).toString().padStart(2, '0') +
@@ -93,10 +90,7 @@ export const useMealPlanner = (filteredRecipes, combinedRecipes) => {
 
     } catch (error) {
       console.error('Error saving meal plan:', error);
-    } finally {
-      setIsSaving(false);
     }
-
   }
 
   const handleAddMealList = (id) => {

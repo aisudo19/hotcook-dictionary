@@ -6,7 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 function EditRecipe() {
   const { id } = useParams();
-  console.log("id: ", id);
   const navigate = useNavigate();
   const [recipe, setRecipe] = useState({
     title: '',
@@ -20,7 +19,6 @@ function EditRecipe() {
     created_at: new Date(),
     deleted_at: null
   });
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -41,8 +39,6 @@ function EditRecipe() {
       } catch (error) {
         console.error('Error fetching recipe:', error);
         alert('レシピの取得に失敗しました');
-      } finally {
-        setLoading(false);
       }
     };
 

@@ -104,7 +104,6 @@ function SavedMealPlans() {
     ];
 
     const foodListString = Array.from(foodList).map(([name, amount]) => `${name}: ${amount}`).join('\n');
-    console.log(foodListString);
     navigate('/food-list', { state: { foodListString } });
   }
 

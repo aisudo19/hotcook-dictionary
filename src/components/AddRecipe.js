@@ -9,8 +9,8 @@ import ImageLogo from "../assets/image/image.svg";
 function AddRecipe() {
   const { user } = useAuth();
   const [selectedFile, setSelectedFile] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [recipe, setRecipe] = useState({
     title: '',
     servings: '',
@@ -72,7 +72,8 @@ function AddRecipe() {
       supported_device: recipe.supported_device,
       updated_at: recipe.updated_at,
       created_at: recipe.created_at,
-      userId: user.uid
+      userId: user.uid,
+      imageUrl: `${process.env.REACT_APP_REMOTESERVER_URL}/uploads/${user.uid}_${customId}.jpg` // 画像URLを追加
     };
 
     return {
@@ -89,7 +90,7 @@ function AddRecipe() {
         ),
         instructions: recipe.instructions.filter(
           instruction => instruction.trim() !== ''
-      ),
+        ),
       }
     };
   };
@@ -101,14 +102,26 @@ function AddRecipe() {
         return;
       }
 
-      if(!onFileUpload()) {
-        alert("画像のアップロードに失敗しました");
-        return;
+      // カスタムIDを先に生成
+      const customId = window.crypto.randomUUID();
+
+      // 画像のアップロード処理
+      if(selectedFile) {
+        const formData = new FormData();
+        formData.append("image", selectedFile);
+        formData.append("userId", user.uid);    // ユーザーIDを追加
+        formData.append("recipeId", customId);  // レシピIDを追加
+
+        const imageUploadResult = await uploadImage(formData);
+        if (!imageUploadResult.success) {
+          alert("画像のアップロードに失敗しました");
+          return;
+        }
       }
 
-      const customId = window.crypto.randomUUID();
       const recipeData = createRecipeData(recipe, customId);
 
+      // Firestoreへの保存
       await Promise.all([
         setDoc(doc(db, 'recipes', customId), recipeData.base),
         setDoc(doc(db, 'recipe_details', customId), recipeData.details)
@@ -119,6 +132,26 @@ function AddRecipe() {
     } catch (error) {
       console.error('Error adding recipe:', error);
       alert('レシピの保存中にエラーが発生しました');
+    }
+  };
+
+  const uploadImage = async (formData) => {
+    try {
+      setLoading(true);
+      const response = await fetch(process.env.REACT_APP_REMOTESERVER_URL, {
+        method: "POST",
+        body: formData
+      });
+      const result = await response.json();
+      if (result.success) {
+        return { success: true, url: result.url };
+      }
+      return { success: false };
+    } catch (error) {
+      console.error('Image upload error:', error);
+      return { success: false };
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -155,6 +188,8 @@ function AddRecipe() {
       updated_at: new Date(),
       created_at: new Date(),
     });
+    setSelectedFile(null);
+    setPreview(null);
   };
 
   const handleFileChange = (event) => {
@@ -197,7 +232,6 @@ function AddRecipe() {
       return false;
     }
 
-    setLoading(true);
     const formData = new FormData();
     formData.append("image", selectedFile);
 
@@ -216,8 +250,6 @@ function AddRecipe() {
       }
     } catch (e) {
       return false;
-    } finally {
-      setLoading(false);
     }
     return true;
   }
