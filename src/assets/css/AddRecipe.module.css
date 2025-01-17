@@ -28,6 +28,11 @@
   border-radius: 4px;
 }
 
+.previewImage {
+  max-width: 600px;
+  max-height: 300px;
+}
+
 .ingredientRow,
 .instructionRow {
   display: flex;
