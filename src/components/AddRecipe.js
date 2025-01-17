@@ -142,11 +142,19 @@ function AddRecipe() {
         method: "POST",
         body: formData
       });
-      const result = await response.json();
+      const textResponse = await response.text();
+      let result;
+      try {
+        result = JSON.parse(textResponse);
+        console.log('Parsed response:', result);
+      } catch (error) {
+        console.error('JSON parse error:', error);
+        return { success: false };
+      }
+
       if (result.success) {
         return { success: true, url: result.url };
       }
-      return { success: false };
     } catch (error) {
       console.error('Image upload error:', error);
       return { success: false };
