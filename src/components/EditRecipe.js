@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { setDoc, doc, getDoc } from 'firebase/firestore';
 import styles from '../assets/css/EditRecipe.module.css';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { Button } from "@mui/material";
+import ImageLogo from "../assets/image/image.svg";
+import { useParams, useNavigate } from 'react-router-dom';
 
 function EditRecipe() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useAuth();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [initialLoad, setInitialLoad] = useState(true);
   const [recipe, setRecipe] = useState({
     title: '',
     servings: '',
@@ -16,29 +24,32 @@ function EditRecipe() {
     category: 'main',
     supported_device: '',
     updated_at: new Date(),
-    created_at: new Date(),
-    deleted_at: null
+    created_at: new Date()
   });
 
+  // レシピデータの取得
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const recipeRef = doc(db, 'recipe_details', id);
-        const recipeSnapshot = await getDoc(recipeRef);
-
-        if (recipeSnapshot.exists()) {
-          const data = recipeSnapshot.data();
+        const recipeDoc = await getDoc(doc(db, 'recipe_details', id));
+        if (recipeDoc.exists()) {
+          const recipeData = recipeDoc.data();
           setRecipe({
-            ...data,
-            updated_at: new Date(),
+            ...recipeData,
+            updated_at: new Date()
           });
+          if (recipeData.imageUrl) {
+            setPreview(recipeData.imageUrl);
+          }
         } else {
           alert('レシピが見つかりませんでした');
-          navigate('/');
+          navigate('/recipes');
         }
       } catch (error) {
         console.error('Error fetching recipe:', error);
-        alert('レシピの取得に失敗しました');
+        alert('レシピの取得中にエラーが発生しました');
+      } finally {
+        setInitialLoad(false);
       }
     };
 
@@ -71,6 +82,11 @@ function EditRecipe() {
     });
   };
 
+  const removeIngredient = (index) => {
+    const newIngredients = recipe.ingredients.filter((_, i) => i !== index);
+    setRecipe({ ...recipe, ingredients: newIngredients });
+  };
+
   const handleInstructionChange = (index, value) => {
     const newInstructions = recipe.instructions.map((instruction, i) => {
       if (i === index) {
@@ -88,67 +104,86 @@ function EditRecipe() {
     });
   };
 
+  const removeInstruction = (index) => {
+    const newInstructions = recipe.instructions.filter((_, i) => i !== index);
+    setRecipe({ ...recipe, instructions: newInstructions });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const filteredIngredients = recipe.ingredients.filter(
-        ingredient => ingredient.name.trim() !== '' && ingredient.amount.trim() !== ''
-      );
-
-      const filteredInstructions = recipe.instructions.filter(
-        instruction => instruction.trim() !== ''
-      );
-      if (filteredIngredients.length === 0) {
-        alert('少なくとも1つの材料を入力してください');
+      if (!validateRecipe(recipe)) {
         return;
       }
 
-      if (filteredInstructions.length === 0) {
-        alert('少なくとも1つの手順を入力してください');
-        return;
+      // 画像のアップロード処理
+      if (selectedFile) {
+        const formData = new FormData();
+        formData.append("image", selectedFile);
+        formData.append("userId", user.uid);
+        formData.append("recipeId", id);
+
+        const imageUploadResult = await uploadImage(formData);
+        if (!imageUploadResult.success) {
+          alert("画像のアップロードに失敗しました");
+          return;
+        }
       }
 
+      // レシピデータの更新
+      const updatedRecipe = {
+        ...recipe,
+        updated_at: new Date()
+      };
+
+      // Firestoreの更新
       await Promise.all([
         setDoc(doc(db, 'recipes', id), {
-          UID: id,
-          title: recipe.title,
-          category: recipe.category,
-          cooking_time: recipe.cooking_time,
-          supported_device: recipe.supported_device,
-          updated_at: new Date(),
-          created_at: recipe.created_at
+          title: updatedRecipe.title,
+          category: updatedRecipe.category,
+          cooking_time: updatedRecipe.cooking_time,
+          supported_device: updatedRecipe.supported_device,
+          updated_at: updatedRecipe.updated_at,
+          userId: user.uid,
+          imageUrl: updatedRecipe.imageUrl,
+          UID: id
         }),
-        setDoc(doc(db, 'recipe_details', id), {
-          id: id,
-          title: recipe.title,
-          servings: recipe.servings,
-          cooking_time: recipe.cooking_time,
-          ingredients: filteredIngredients,
-          instructions: filteredInstructions,
-          category: recipe.category,
-          supported_device: recipe.supported_device,
-          updated_at: new Date(),
-          created_at: recipe.created_at
-        })
+        setDoc(doc(db, 'recipe_details', id), updatedRecipe)
       ]);
 
-      alert('レシピが保存されました！');
-      // フォームをリセット
-      setRecipe({
-        title: '',
-        servings: '',
-        cooking_time: '',
-        ingredients: [{ name: '', amount: '' }],
-        instructions: [''],
-        category: 'main',
-        supported_device: '',
-        updated_at: new Date(),
-        created_at: new Date(),
-        deleted_at: null
-      });
+      alert('レシピが更新されました！');
+      navigate(`/recipe/${id}`);
     } catch (error) {
-      console.error('Error adding recipe:', error);
-      alert('レシピの保存中にエラーが発生しました');
+      console.error('Error updating recipe:', error);
+      alert('レシピの更新中にエラーが発生しました');
+    }
+  };
+
+  const uploadImage = async (formData) => {
+    try {
+      setLoading(true);
+      const response = await fetch(process.env.REACT_APP_REMOTESERVER_URL + '/api/upload.php', {
+        method: "POST",
+        body: formData
+      });
+      const textResponse = await response.text();
+      let result;
+      try {
+        result = JSON.parse(textResponse);
+        console.log('Parsed response:', result);
+      } catch (error) {
+        console.error('JSON parse error:', error);
+        return { success: false };
+      }
+
+      if (result.success) {
+        return { success: true, url: result.url };
+      }
+    } catch (error) {
+      console.error('Image upload error:', error);
+      return { success: false };
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -173,6 +208,43 @@ function EditRecipe() {
     return true;
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleDrop = useCallback((event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const file = event.dataTransfer.files[0];
+    if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
+      setSelectedFile(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  }, []);
+
+  const handleDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  }, []);
+
+  if (initialLoad) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={styles.container}>
       <h2>レシピを編集</h2>
@@ -182,10 +254,52 @@ function EditRecipe() {
           <input
             type="text"
             name="title"
+            placeholder='料理名'
             value={recipe.title}
             onChange={handleChange}
             required
           />
+        </div>
+
+        <div className={styles.outerBox}>
+          <div className={styles.title}>
+            <p>JpegかPngの画像ファイル</p>
+          </div>
+          <div
+            className={styles.imageUplodeBox}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+          >
+            {preview ? (
+              <div className={styles.previewContainer}>
+                <img src={preview} alt="プレビュー" className={styles.previewImage} />
+              </div>
+            ) : (
+              <div className={styles.imageLogoAndText}>
+                <img src={ImageLogo} alt="imagelogo" />
+                <p>ここに画像をドラッグ＆ドロップしてください</p>
+              </div>
+            )}
+            <input
+              className={styles.imageUploadInput}
+              type="file"
+              onChange={handleFileChange}
+              accept=".png,.jpeg,.jpg"
+            />
+          </div>
+          <Button
+            variant="contained"
+            component="label"
+            style={{ marginLeft: '10px', marginTop: '15px' }}
+          >
+            ファイルを選択
+            <input
+              type="file"
+              hidden
+              onChange={handleFileChange}
+              accept=".png,.jpeg,.jpg"
+            />
+          </Button>
         </div>
 
         <div className={styles.formGroup}>
@@ -206,6 +320,7 @@ function EditRecipe() {
           <input
             type="number"
             name="cooking_time"
+            placeholder='調理時間'
             value={recipe.cooking_time}
             onChange={handleChange}
             required
@@ -217,6 +332,7 @@ function EditRecipe() {
           <input
             type="text"
             name="servings"
+            placeholder='何人分'
             value={recipe.servings}
             onChange={handleChange}
             required
@@ -252,6 +368,13 @@ function EditRecipe() {
                 value={ingredient.amount}
                 onChange={(e) => handleIngredientChange(index, 'amount', e.target.value)}
               />
+              <button
+                type="button"
+                onClick={() => removeIngredient(index)}
+                className={styles.removeButton}
+              >
+                削除
+              </button>
             </div>
           ))}
           <button type="button" onClick={addIngredient} className={styles.addButton}>
@@ -268,6 +391,13 @@ function EditRecipe() {
                 onChange={(e) => handleInstructionChange(index, e.target.value)}
                 placeholder={`手順 ${index + 1}`}
               />
+              <button
+                type="button"
+                onClick={() => removeInstruction(index)}
+                className={styles.removeButton}
+              >
+                削除
+              </button>
             </div>
           ))}
           <button type="button" onClick={addInstruction} className={styles.addButton}>
@@ -275,9 +405,18 @@ function EditRecipe() {
           </button>
         </div>
 
-        <button type="submit" className={styles.submitButton}>
-          レシピを更新
-        </button>
+        <div className={styles.buttonGroup}>
+          <button type="submit" className={styles.submitButton}>
+            {loading ? '更新中...' : 'レシピを更新'}
+          </button>
+          <button
+            type="button"
+            onClick={() => navigate(`/recipe/${id}`)}
+            className={styles.cancelButton}
+          >
+            キャンセル
+          </button>
+        </div>
       </form>
     </div>
   );
