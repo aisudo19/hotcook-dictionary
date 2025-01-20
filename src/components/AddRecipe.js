@@ -138,7 +138,7 @@ function AddRecipe() {
   const uploadImage = async (formData) => {
     try {
       setLoading(true);
-      const response = await fetch(process.env.REACT_APP_REMOTESERVER_URL, {
+      const response = await fetch(process.env.REACT_APP_REMOTESERVER_URL + '/api/upload.php', {
         method: "POST",
         body: formData
       });
@@ -233,34 +233,6 @@ function AddRecipe() {
     event.preventDefault();
     event.stopPropagation();
   }, []);
-
-  const onFileUpload = async() => {
-    if(!selectedFile) {
-      alert("ファイルを選択してください");
-      return false;
-    }
-
-    const formData = new FormData();
-    formData.append("image", selectedFile);
-
-    try {
-      const response = await fetch(process.env.REACT_APP_REMOTESERVER_URL, {
-        method: "POST",
-        body: formData
-      });
-      const result = await response.json();
-      if(result.success) {
-        alert("アップロードに成功しました");
-        setPreview(null);
-        setSelectedFile(null);
-      } else {
-        return false;
-      }
-    } catch (e) {
-      return false;
-    }
-    return true;
-  }
 
   return (
     <div className={styles.container}>

@@ -70,7 +70,7 @@ function RecipeDetails() {
         <button onClick={() => {handleEditRecipe(recipeData.id)}}>編集</button>
         <button onClick={() => {handleRemoveRecipe(recipeData.id)}}>削除</button>
       </div>
-      <img src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${recipeData.id}.jpg`} alt={recipeData.title} />
+      <img src={recipeData.imageUrl} alt={recipeData.title} />
       <p>{recipeData.servings}</p>
       {recipeData?.ingredients?.map((ingredient, index) => (
         <div key={index}>

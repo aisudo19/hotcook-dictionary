@@ -14,7 +14,7 @@ function CreateMealPlan({mealPlanMains, mealPlanSides, onCreateMeals, onSaveMeal
               <div key={recipe.id} className={styles.mealMain}>
                 <button className={styles.deleteBtn} onClick={() => handleDeleteMeal(recipe.id)}>x</button>
                 <p>{recipe.title}</p>
-                <img className={styles.mealThumImg} src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${recipe.id}.jpg`} alt={recipe.title} />
+                <img className={styles.mealThumImg} src={recipe.imageUrl} alt={recipe.title} />
               </div>
             ))}
             <h3>サイド</h3>
@@ -22,7 +22,7 @@ function CreateMealPlan({mealPlanMains, mealPlanSides, onCreateMeals, onSaveMeal
               <div key={recipe.id} className={styles.mealSide}>
                 <button className={styles.deleteBtn} onClick={() => handleDeleteMeal(recipe.id)}>x</button>
                 <p>{recipe.title}</p>
-                <img className={styles.mealThumImg} src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${recipe.id}.jpg`} alt={recipe.title} />
+                <img className={styles.mealThumImg} src={recipe.imageUrl} alt={recipe.title} />
               </div>
             ))}
           </div>
