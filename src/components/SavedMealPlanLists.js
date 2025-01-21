@@ -1,4 +1,4 @@
-  import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
+  import { collection, query, deleteDoc, doc, getDocs, or, where } from 'firebase/firestore';
   import React, { useEffect, useState } from 'react'
   import { db } from '../firebase';
   import styles from '../assets/css/SavedMealPlanLists.module.css';
@@ -11,12 +11,49 @@
     const fetchMealPlans = async () => {
       try {
         const mealPlansSnapshot = await getDocs(collection(db, 'meal_plans'));
-        setMealPlans(mealPlansSnapshot.docs.map(doc => (
-          {
+        // IDの重複を排除
+        const searchIdsMain = [...new Set(
+          mealPlansSnapshot.docs.flatMap(doc =>
+            doc.data().mains.map(main => main.id)
+          )
+        )];
+
+        const searchIdsSide = [...new Set(
+          mealPlansSnapshot.docs.flatMap(doc =>
+            doc.data().sides.map(side => side.id)
+          )
+        )];
+
+        const recipesQuery = query(
+          collection(db, 'recipe_details'),
+          or(
+            where('id', 'in', searchIdsMain),
+            where('id', 'in', searchIdsSide)
+          )
+        );
+
+        const recipeDetailsSnapshot = await getDocs(recipesQuery);
+        const recipeDetailsMap = new Map(
+          recipeDetailsSnapshot.docs.map(doc => [doc.id, doc.data()])
+        );
+
+        const precessedMealPlans = mealPlansSnapshot.docs.map(doc => {
+          const mealPlan = doc.data();
+          return {
             id: doc.id,
-            ...doc.data()
-          }
-        )));
+            ...mealPlan,
+            mains: mealPlan.mains.map(main => ({
+              ...main,
+              ...recipeDetailsMap.get(main.id)
+            })),
+            sides: mealPlan.sides.map(side => ({
+              ...side,
+              ...recipeDetailsMap.get(side.id)
+            }))
+          };
+        });
+
+        setMealPlans(precessedMealPlans);
       } catch (error) {
         console.error('Error fetching meal plans:', error);
       } finally {
@@ -80,7 +117,7 @@
               {mealPlan.mains.map((main, i) => (
                 <div key={i} className={styles.mealItem}>
                   <p>{main.title}</p>
-                  <img className={styles.mealThumImg} src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${main.id}.jpg`} alt={main.title} />
+                  <img className={styles.mealThumImg} src={main.imageUrl} alt={main.title} />
                 </div>
               ))}
               </div>
@@ -89,7 +126,7 @@
               {mealPlan.sides.map((side, i) => (
                 <div key={i} className={styles.mealItem}>
                   <p>{side.title}</p>
-                  <img className={styles.mealThumImg} src={`https://cocoroplus.jp.sharp/kitchen/recipe/photo/${side.id}.jpg`} alt={side.title} />
+                  <img className={styles.mealThumImg} src={side.imageUrl} alt={side.title} />
                 </div>
               ))}
             </div>
