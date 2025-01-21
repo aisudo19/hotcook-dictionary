@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { setDoc, doc, getDoc, updateDoc } from 'firebase/firestore';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
 import styles from '../assets/css/AddRecipe.module.css';
 import { useAuth } from '../contexts/AuthContext';
 import { Button } from "@mui/material";
@@ -24,7 +24,7 @@ function EditRecipe() {
     category: 'main',
     supported_device: '',
     updated_at: new Date(),
-    created_at: new Date()
+    imageUrl: ''
   });
 
   // レシピデータの取得
@@ -110,7 +110,6 @@ function EditRecipe() {
   };
 
   const handleSubmit = async (e) => {
-    //フォームのデフォルトの送信処理をキャンセル
     e.preventDefault();
     try {
       if (!validateRecipe(recipe)) {
@@ -139,25 +138,17 @@ function EditRecipe() {
 
       // Firestoreの更新
       await Promise.all([
-        updateDoc(doc(db, 'recipes', id), {
+        setDoc(doc(db, 'recipes', id), {
           title: updatedRecipe.title,
           category: updatedRecipe.category,
           cooking_time: updatedRecipe.cooking_time,
           supported_device: updatedRecipe.supported_device,
           updated_at: updatedRecipe.updated_at,
+          userId: user.uid,
           imageUrl: updatedRecipe.imageUrl,
+          UID: id
         }),
-        updateDoc(doc(db, 'recipe_details', id), {
-          title: updatedRecipe.title,
-          category: updatedRecipe.category,
-          cooking_time: updatedRecipe.cooking_time,
-          supported_device: updatedRecipe.supported_device,
-          updated_at: updatedRecipe.updated_at,
-          imageUrl: updatedRecipe.imageUrl,
-          servings: updatedRecipe.servings,
-          instructions: updatedRecipe.instructions,
-          ingredients: updatedRecipe.ingredients,
-        })
+        setDoc(doc(db, 'recipe_details', id), updatedRecipe)
       ]);
 
       alert('レシピが更新されました！');
