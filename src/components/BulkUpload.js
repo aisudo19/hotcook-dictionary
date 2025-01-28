@@ -57,7 +57,7 @@ const BulkUpload = () => {
     try {
       const text = await file.text();
       const data = JSON.parse(text);
-      await uploadToFirestore(Array.isArray(data) ? data : [data]);
+      await uploadToFirestore(Array.isArray(data) ? data : [data], file);
     } catch (error) {
       console.error('エラー:', error);
       setResult('JSONの解析に失敗しました');
@@ -66,15 +66,22 @@ const BulkUpload = () => {
     }
   };
 
-  const uploadToFirestore = async (data) => {
+  const uploadToFirestore = async (data, file = null) => {
     try {
       const batch = writeBatch(db);
       const collectionRef = collection(db, collectionName);
 
       data.forEach((item) => {
+        // JSONファイルの場合かつimageUrlが存在しない場合のみ追加
+        let processedItem = item;
+        if (file?.type === 'application/json' && !item.hasOwnProperty('imageUrl')) {
+          processedItem = {
+            ...item,
+            imageUrl: `https://cocoroplus.jp.sharp/kitchen/recipe/photo/${item.id}.jpg`
+          };
+        }
         // オブジェクトの各フィールドをチェックしてboolean値を変換
-        const convertedItem = Object.entries(item).reduce((acc, [key, value]) => {
-          // 文字列の"true"/"false"をboolean値に変換
+        const convertedItem = Object.entries(processedItem).reduce((acc, [key, value]) => {
           if (value === "true" || value === "false" || value === "TRUE" || value === "FALSE") {
             acc[key] = value === "true";
           } else {
