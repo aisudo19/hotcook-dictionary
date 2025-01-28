@@ -65,6 +65,16 @@ function AddRecipe() {
   };
 
   const createRecipeData = (recipe, customId) => {
+    // 選択されたファイルから拡張子を取得
+    let extension = 'jpg'; // デフォルト値
+    if (selectedFile) {
+      // ファイル名から拡張子を取得
+      const fileExtension = selectedFile.name.split('.').pop().toLowerCase();
+      // 許可された拡張子のみを使用
+      if (['jpg', 'jpeg', 'png'].includes(fileExtension)) {
+        extension = fileExtension === 'jpeg' ? 'jpg' : fileExtension;
+      }
+    }
     const baseData = {
       title: recipe.title,
       category: recipe.category,
@@ -73,7 +83,7 @@ function AddRecipe() {
       updated_at: recipe.updated_at,
       created_at: recipe.created_at,
       userId: user.uid,
-      imageUrl: `${process.env.REACT_APP_REMOTESERVER_URL}/uploads/${user.uid}_${customId}.jpg` // 画像URLを追加
+      imageUrl: `${process.env.REACT_APP_REMOTESERVER_URL}/uploads/${user.uid}_${customId}.${extension}`
     };
 
     return {
