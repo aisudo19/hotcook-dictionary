@@ -1,12 +1,62 @@
+.recipeContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.recipeCard {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .flex {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  align-items: start;
 }
 
 .mealThumImg {
-  height: 100%;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
 }
 
 .ingredients,
 .instructions {
-  width: 33%;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .flex {
+    grid-template-columns: 1fr;
+  }
+
+  .ingredients,
+  .instructions {
+    width: 100%;
+  }
+
+  .mealThumImg {
+    height: 180px;
+  }
 }
